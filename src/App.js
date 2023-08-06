@@ -7,6 +7,7 @@ function App() {
     <>
       <GlobalStyle />
       <Router />
+      <h1>Hello World</h1>
     </>
   );
 }
