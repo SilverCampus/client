@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Text = ({
+const Text = ({
   size = 1,
   weight = 500,
   color = 'black',
@@ -60,3 +60,5 @@ const StyledText = styled.span`
   font-family: ${({ font }) => font};
   cursor: ${({ cursor }) => cursor};
 `;
+
+export default Text;

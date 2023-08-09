@@ -2,7 +2,7 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 
 // Imported Components
 import Home from './pages/Home/index';
-import Search from './pages/Search/index';
+import SearchPage from './pages/Search/SearchPage';
 import Main from './pages/Main/index';
 import MyPage from './pages/MyPage/index';
 import Course from './pages/Course/index';
@@ -14,10 +14,10 @@ const Router = () => {
 
   return (
     <>
-      {pathName.pathname === '/' ? null : <Header />}
+      {/* {pathName.pathname === '/' ? null : <Header />} */}
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/search" element={<Search />} />
+        <Route path="/search" element={<SearchPage />} />
         <Route path="/main" element={<Main />} />
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/course" element={<Course />} />
