@@ -10,7 +10,6 @@ function App() {
     <BrowserRouter>
       <GlobalStyle />
       <AppContainer>
-        <h1>Hello World!?</h1>
         <Router />
       </AppContainer>
     </BrowserRouter>
