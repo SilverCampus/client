@@ -1,13 +1,14 @@
 import styled from 'styled-components';
 import SearchSection from './SearchSection';
 import TopicSection from './TopicSection';
+import PersonalSection from './PersonalSection';
 
 const SearchPage = () => {
   return (
     <SearchContainer>
       <SearchSection />
       <TopicSection />
-      Search Page
+      <PersonalSection />
     </SearchContainer>
   );
 };
