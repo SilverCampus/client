@@ -1,15 +1,15 @@
 import styled from 'styled-components';
 
-export const Text = ({
+const Text = ({
   size = 1,
   weight = 500,
-  color = 'black',
+  color = 'inherit',
   children,
   variant,
   as = 'span',
   spacing = '-0px',
   font = 'Pretendard-Regular',
-  cursor = 'auto',
+  cursor = 'inherit',
   underline = false,
   lineHeight = '120%',
   align = 'center',
@@ -60,3 +60,5 @@ const StyledText = styled.span`
   font-family: ${({ font }) => font};
   cursor: ${({ cursor }) => cursor};
 `;
+
+export default Text;
