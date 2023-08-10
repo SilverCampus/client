@@ -1,10 +1,12 @@
 import styled from 'styled-components';
 import SearchSection from './SearchSection';
+import TopicSection from './TopicSection';
 
 const SearchPage = () => {
   return (
     <SearchContainer>
       <SearchSection />
+      <TopicSection />
       Search Page
     </SearchContainer>
   );

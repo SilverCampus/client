@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const Logo = () => {
-  return <LogoContainer>Im Logo</LogoContainer>;
+  return <LogoContainer>Logo</LogoContainer>;
 };
 
 const LogoContainer = styled.div`
@@ -17,8 +17,6 @@ const LogoContainer = styled.div`
     'Arial Narrow Bold',
     sans-serif;
   color: #fff;
-  // border: 10px solid white;
-  border-radius: 30px;
 `;
 
 export default Logo;

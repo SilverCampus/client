@@ -7,7 +7,6 @@ import Main from './pages/Main/index';
 import MyPage from './pages/MyPage/index';
 import Course from './pages/Course/index';
 import Lecture from './pages/Lecture/index';
-import Header from './components/organisms/header';
 
 const Router = () => {
   const pathName = useLocation();
