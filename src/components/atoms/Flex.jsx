@@ -16,7 +16,6 @@ const Flex = ({
       height={height}
       direction={direction}
       justify={justify}
-      align={align}
       gap={gap}
       wrap={wrap}
     >
