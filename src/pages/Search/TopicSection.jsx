@@ -4,7 +4,7 @@ import {
   brand_blue,
   brand_darkblue,
   brand_white,
-} from '../../style/palette';
+} from '../../utils/palette';
 
 // Imported Components
 import Heading from '../../components/molecules/Heading';

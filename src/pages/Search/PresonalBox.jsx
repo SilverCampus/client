@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { brand_black } from '../../style/palette';
+import { brand_black } from '../../utils/palette';
 
 // Default Image
 import defaultImg from '../../assets/images/default_image.jpeg';

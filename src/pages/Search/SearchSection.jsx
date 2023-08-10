@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import imgURL from '../../assets/images/background.png';
-import { brand_white } from '../../style/palette';
+import { brand_white } from '../../utils/palette';
 
 // Imported Components
 import Logo from '../../components/molecules/Logo';

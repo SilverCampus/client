@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
-import { brand_white } from '../../style/palette';
+import { brand_white } from '../../utils/palette';
 
 // Imported Components
 import Flex from '../../components/atoms/Flex';
