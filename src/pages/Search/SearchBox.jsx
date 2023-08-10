@@ -13,8 +13,8 @@ const SearchBox = () => {
         <Flex direction="row">
           <FontAwesomeIcon
             icon={faMagnifyingGlass}
-            className="fa-6x"
-            style={{ color: '#ffffff' }}
+            className="fa-4x"
+            style={{ color: `${brand_white}` }}
           />
           <StyledInput />
         </Flex>
@@ -26,15 +26,15 @@ const SearchBox = () => {
 
 const SearchBoxContainer = styled.div`
   margin: 0 auto;
-  width: 900px;
+  width: 625px;
 `;
 
 const BoldUnderline = styled.div`
   width: 100%;
   height: 1px;
 
-  margin: 30px auto;
-  border: 9px solid ${brand_white};
+  margin: 20px auto;
+  border: 4px solid ${brand_white};
   border-radius: 999px;
 `;
 

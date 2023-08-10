@@ -8,17 +8,20 @@ import Heading from '../../components/molecules/Heading';
 import Underline from '../../components/atoms/UnderLine';
 import Space from '../../components/atoms/Space';
 import SearchBox from './SearchBox';
+import GoDown from '../../components/molecules/GoDown';
 
 const SearchSection = () => {
   return (
     <SearchSectionContainer>
       <Logo />
-      <Space height="100px" />
+      <Space height="85px" />
       <Heading color={brand_white} children="원하는 강의를 검색해보세요!" />
       <Underline color={brand_white} />
-      <Space height="140px" />
+      <Space height="85px" />
       <SearchBox />
-      <Space height="140px" />
+      <Space height="210px" />
+      <GoDown color={brand_white} children="아직 결정 못하셨나요?" />
+      <Space height="30px" />
     </SearchSectionContainer>
   );
 };

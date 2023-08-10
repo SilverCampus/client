@@ -5,7 +5,7 @@ const AppContainer = ({ children }) => {
 };
 
 const StyledApp = styled.div`
-  max-width: 1920px;
+  max-width: 1280px;
 `;
 
 export default AppContainer;

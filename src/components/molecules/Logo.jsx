@@ -5,9 +5,12 @@ const Logo = () => {
 };
 
 const LogoContainer = styled.div`
-  width: 100px;
-  height: 100px;
-  margin: 20px 20px;
+  width: fit-content;
+  height: auto;
+
+  margin-top: 20px;
+  margin-left: 20px;
+
   font:
     30px Impact,
     Haettenschweiler,

@@ -4,7 +4,7 @@ import Text from '../atoms/Text';
 const Heading = ({ color, children }) => {
   return (
     <HeadingContainer>
-      <Text children={children} color={color} size={45} weight={700} />
+      <Text children={children} color={color} size={30} weight={700} />
     </HeadingContainer>
   );
 };

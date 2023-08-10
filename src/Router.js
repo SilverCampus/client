@@ -14,7 +14,6 @@ const Router = () => {
 
   return (
     <>
-      {/* {pathName.pathname === '/' ? null : <Header />} */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/search" element={<SearchPage />} />
