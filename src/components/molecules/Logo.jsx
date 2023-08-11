@@ -1,7 +1,8 @@
 import styled from 'styled-components';
+import { brand_white } from '../../utils/palette';
 
-const Logo = () => {
-  return <LogoContainer>Logo</LogoContainer>;
+const Logo = ({ color = brand_white }) => {
+  return <LogoContainer color={color}>Logo</LogoContainer>;
 };
 
 const LogoContainer = styled.div`
@@ -16,7 +17,7 @@ const LogoContainer = styled.div`
     Haettenschweiler,
     'Arial Narrow Bold',
     sans-serif;
-  color: #fff;
+  color: ${({ color }) => color};
 `;
 
 export default Logo;

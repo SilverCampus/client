@@ -3,7 +3,7 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 // Imported Components
 import Home from './pages/Home/index';
 import SearchPage from './pages/Search/SearchPage';
-import Main from './pages/Main/index';
+import MainPage from './pages/Main/MainPage';
 import MyPage from './pages/MyPage/index';
 import Course from './pages/Course/index';
 import Lecture from './pages/Lecture/index';
@@ -17,7 +17,7 @@ const Router = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/search" element={<SearchPage />} />
-        <Route path="/main" element={<Main />} />
+        <Route path="/main/:topic" element={<MainPage />} />
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/course" element={<Course />} />
         <Route path="/lecture" element={<Lecture />} />
