@@ -28,7 +28,7 @@ const TopicSection = () => {
       />
       <Space height="85px" />
 
-      {categoryList.map((it, idx) => (
+      {/* {categoryList.map((it, idx) => (
         <CustomButton
           key={idx}
           children={it.category}
@@ -37,7 +37,7 @@ const TopicSection = () => {
           bgColor={brand_blue}
           darkColor={brand_darkblue}
         />
-      ))}
+      ))} */}
 
       <Space height="210px" />
       <GoDown color={brand_black} children="이미 찜한 강의가 있으신가요?" />

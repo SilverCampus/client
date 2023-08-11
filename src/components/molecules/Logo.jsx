@@ -5,7 +5,7 @@ const Logo = () => {
 };
 
 const LogoContainer = styled.div`
-  width: fit-content;
+  width: 100%;
   height: auto;
 
   margin-top: 20px;
