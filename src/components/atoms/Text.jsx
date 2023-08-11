@@ -46,7 +46,7 @@ const Text = ({
 const StyledText = styled.span`
   word-wrap: break-word;
   text-align: ${({ align }) => align};
-  font-size: ${({ size }) => size}px;
+  font-size: ${({ size }) => size};
   font-weight: ${({ weight }) => weight};
   color: ${({ color }) => color};
   overflow: ${({ isCut }) => (isCut ? 'hidden' : '')};
