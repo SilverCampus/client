@@ -2,13 +2,13 @@ import styled from 'styled-components';
 
 const Text = ({
   size = 1,
-  weight = 500,
+  weight = 300,
   color = 'inherit',
   children,
   variant,
   as = 'span',
   spacing = '-0px',
-  font = 'Pretendard-Regular',
+  font = 'KIMM_Bold',
   cursor = 'inherit',
   underline = false,
   lineHeight = '120%',

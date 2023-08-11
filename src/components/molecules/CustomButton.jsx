@@ -1,21 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import Flex from '../atoms/Flex';
-import Text from '../atoms/Text';
 
 const CustomButton = ({ width, height, colors, children }) => {
-  const [isClicked, setClick] = React.useState(false);
-
   return (
-    <CustomButtonContainer
-      width={width}
-      height={height}
-      colors={colors}
-      onClick={() => setClick(!isClicked)}
-      className={isClicked ? 'isClicked' : ''}
-    >
+    <CustomButtonContainer width={width} height={height} colors={colors}>
       <Flex direction="row" width="auto" height="auto" gap="8px">
-        {children ? children.map((it) => it) : null}
+        {children}
       </Flex>
     </CustomButtonContainer>
   );
@@ -32,9 +23,13 @@ const CustomButtonContainer = styled.button`
   box-shadow: 0px 0px 16px 0px rgba(163, 159, 159, 0.5);
   cursor: pointer;
 
-  &.isClicked {
-    color: ${({ colors }) => colors.bgColor};
+  &:hover {
+    filter: brightness(70%);
+  }
+
+  &:active {
     background-color: ${({ colors }) => colors.color};
+    color: ${({ colors }) => colors.bgColor};
     border-top: 5px solid #98b1b5;
     border-bottom: none;
     box-shadow: 0px 0px 8px 0px #a39f9f inset;
