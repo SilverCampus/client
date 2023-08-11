@@ -7,6 +7,7 @@ import Main from './pages/Main/index';
 import MyPage from './pages/MyPage/index';
 import Course from './pages/Course/index';
 import Lecture from './pages/Lecture/index';
+import MyFooter from './components/organisms/MyFooter';
 
 const Router = () => {
   const pathName = useLocation();
@@ -21,6 +22,7 @@ const Router = () => {
         <Route path="/course" element={<Course />} />
         <Route path="/lecture" element={<Lecture />} />
       </Routes>
+      <MyFooter />
     </>
   );
 };

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { brand_black } from '../../style/palette';
+import { brand_black } from '../../utils/palette';
 
 // Imported Components
 import Heading from '../../components/molecules/Heading';
