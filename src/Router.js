@@ -1,7 +1,7 @@
 import { Route, Routes, useLocation } from 'react-router-dom';
 
 // Imported Components
-import Home from './pages/Home/index';
+import HomePage from './pages/Home/HomePage';
 import SearchPage from './pages/Search/SearchPage';
 import MainPage from './pages/Main/MainPage';
 import MyPage from './pages/MyPage/index';
@@ -15,7 +15,7 @@ const Router = () => {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/search" element={<SearchPage />} />
         <Route path="/main/:topic" element={<MainPage />} />
         <Route path="/mypage" element={<MyPage />} />
