@@ -1,12 +1,20 @@
 import styled from 'styled-components';
 
-const FlatButton = ({ width, height, bgColor, children, className }) => {
+const FlatButton = ({
+  width,
+  height,
+  bgColor,
+  children,
+  onClick,
+  className,
+}) => {
   return (
     <StyledFlatButton
       width={width}
       height={height}
       bgColor={bgColor}
       className={className}
+      onClick={onClick}
     >
       {children}
     </StyledFlatButton>
