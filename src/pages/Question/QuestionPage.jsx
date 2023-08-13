@@ -1,7 +1,7 @@
 import React from 'react';
 
 const QuestionPage = () => {
-  return <div></div>;
+  return <div>HelloWorld</div>;
 };
 
 export default QuestionPage;
