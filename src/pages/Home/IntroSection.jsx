@@ -1,4 +1,3 @@
-import styled from 'styled-components';
 import imgURL from '../../assets/images/background.png';
 import { brand_white } from '../../utils/palette';
 

@@ -8,8 +8,13 @@ import DescriptionSection from './DescriptionSection';
 import Wrapper from '../../components/atoms/Wrapper';
 import Text from '../../components/atoms/Text';
 import FlatButton from '../../components/molecules/FlatButton';
+import Modal from '../Modal/Modal';
+import SignForm from '../Login/SignForm';
+import useModal from '../Modal/useModal';
 
 const HomePage = () => {
+  const [isOpen, toggleModal] = useModal();
+
   return (
     <HomePageContainer>
       <F11Text
@@ -19,7 +24,12 @@ const HomePage = () => {
           </Text>
         }
       />
-      <FixButton width="250px" height="65px" bgColor="#35a29f">
+      <FixButton
+        width="250px"
+        height="65px"
+        bgColor="#35a29f"
+        onClick={toggleModal}
+      >
         <Text
           size="25px"
           weight={700}
@@ -28,6 +38,8 @@ const HomePage = () => {
           children="지금 시작하기"
         />
       </FixButton>
+      <Modal state={isOpen} toggleModal={toggleModal} children={<SignForm />} />
+
       <IntroSection />
       <Wrapper linear="linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(170, 170, 170, 0.15) 100%)">
         <DescriptionSection />
