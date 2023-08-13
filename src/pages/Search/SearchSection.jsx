@@ -5,7 +5,7 @@ import { brand_white } from '../../utils/palette';
 // Imported Components
 import Logo from '../../components/molecules/Logo';
 import Heading from '../../components/molecules/Heading';
-import Underline from '../../components/atoms/UnderLine';
+import MyUnderline from '../../components/atoms/MyUnderline';
 import Space from '../../components/atoms/Space';
 import SearchBox from './SearchBox';
 import GoDown from '../../components/molecules/GoDown';
@@ -16,7 +16,7 @@ const SearchSection = () => {
       <Logo />
       <Space height="85px" />
       <Heading color={brand_white} children="원하는 강의를 검색해보세요!" />
-      <Underline color={brand_white} />
+      <MyUnderline color={brand_white} />
       <Space height="85px" />
       <SearchBox />
       <Space height="210px" />

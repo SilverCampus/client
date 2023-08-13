@@ -3,9 +3,9 @@ import { brand_black } from '../../utils/palette';
 
 // Imported Components
 import Heading from '../../components/molecules/Heading';
-import Underline from '../../components/atoms/UnderLine';
+import Heading2 from '../../components/molecules/Heading2';
+import MyUnderline from '../../components/atoms/MyUnderline';
 import Space from '../../components/atoms/Space';
-import Description from '../../components/molecules/Description';
 import PresonalBox from './PresonalBox';
 import Flex from '../../components/atoms/Flex';
 
@@ -14,9 +14,9 @@ const PersonalSection = () => {
     <SearchSectionContainer>
       <Space height="145px" />
       <Heading color={brand_black} children="개인 기록을 확인하세요!" />
-      <Underline color={brand_black} />
+      <MyUnderline color={brand_black} />
       <Space height="40px" />
-      <Description
+      <Heading2
         color={brand_black}
         children="더 자세한 기록은 개인 페이지를 확인하세요."
       />

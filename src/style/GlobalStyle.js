@@ -10,6 +10,9 @@ const GlobalStyle = createGlobalStyle`
     button {
         border: none;
     };
+    *::-webkit-scrollbar {
+        display: none;
+    };
 `;
 
 export default GlobalStyle;
