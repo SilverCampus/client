@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationArrow } from '@fortawesome/free-solid-svg-icons';
 
 // Imported Components
-import CustomButton from '../molecules/CustomButton';
+import PopButton from '../molecules/PopButton';
 
 import {
   brand_darkpurple,
@@ -30,11 +30,11 @@ const Navigation = () => {
 
       {isClicked ? (
         <>
-          <CustomButton width="120px" height="35px" colors={colors} />
-          <CustomButton width="120px" height="35px" colors={colors} />
-          <CustomButton width="120px" height="35px" colors={colors} />
-          <CustomButton width="120px" height="35px" colors={colors} />
-          <CustomButton width="120px" height="35px" colors={colors} />
+          <PopButton width="120px" height="35px" colors={colors} />
+          <PopButton width="120px" height="35px" colors={colors} />
+          <PopButton width="120px" height="35px" colors={colors} />
+          <PopButton width="120px" height="35px" colors={colors} />
+          <PopButton width="120px" height="35px" colors={colors} />
         </>
       ) : null}
     </StyledNav>

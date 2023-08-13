@@ -1,5 +1,8 @@
 import { useState } from 'react';
 
+// "Enter a valid username. This value may contain only letters, numbers, and @/./+/-/_ characters."
+// "Ensure this field has no more than 150 characters."
+
 const useLoginForm = () => {
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');

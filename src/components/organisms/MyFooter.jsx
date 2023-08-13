@@ -38,7 +38,7 @@ const MyFooter = () => {
             </a>
           </GithubContainer>
         </Flex>
-        <Space height="160px" />
+        <Space height="80px" />
       </Wrapper>
     </footer>
   );
