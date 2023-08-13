@@ -17,6 +17,7 @@ const CustomButtonContainer = styled.button`
   height: ${({ height }) => height};
   border-radius: 10px;
   border-bottom: 5px solid ${({ colors }) => colors.shadowColor};
+  padding-top: 5px;
 
   color: ${({ colors }) => colors.color};
   background-color: ${({ colors }) => colors.bgColor};

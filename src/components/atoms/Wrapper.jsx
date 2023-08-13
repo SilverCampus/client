@@ -1,9 +1,8 @@
 import styled from 'styled-components';
-import { brand_white } from '../../utils/palette';
 
-const Wrapper = ({ img, bgColor = brand_white, children }) => {
+const Wrapper = ({ img, bgColor, children, linear }) => {
   return (
-    <StyledWrapper img={img} bgColor={brand_white}>
+    <StyledWrapper img={img} bgColor={bgColor} linear={linear}>
       <StyledContainer>{children}</StyledContainer>
     </StyledWrapper>
   );
@@ -15,6 +14,7 @@ const StyledWrapper = styled.div`
 
   background-color: ${({ bgColor }) => bgColor};
   background-image: url(${({ img }) => img});
+  background: ${({ linear }) => linear};
   background-position: center;
   background-size: cover;
 `;

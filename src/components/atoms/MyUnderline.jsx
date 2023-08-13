@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-const Underline = ({ color }) => {
+const MyUnderline = ({ color }) => {
   return <UnderlineContainer color={color} />;
 };
 const UnderlineContainer = styled.div`
-  width: 125px;
+  width: 190px;
   height: 1px;
 
   margin: 25px auto 0;
@@ -12,4 +12,4 @@ const UnderlineContainer = styled.div`
   border-radius: 999px;
 `;
 
-export default Underline;
+export default MyUnderline;

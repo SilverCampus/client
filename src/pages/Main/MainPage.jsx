@@ -8,7 +8,7 @@ import Navigation from '../../components/organisms/Navigation';
 import Flex from '../../components/atoms/Flex';
 import Space from '../../components/atoms/Space';
 import Text from '../../components/atoms/Text';
-import Underline from '../../components/atoms/UnderLine';
+import MyUnderline from '../../components/atoms/MyUnderline';
 import CourseCard from './CourseCard';
 
 const MainPage = () => {
@@ -28,7 +28,7 @@ const MainPage = () => {
           children="의 검색 결과"
         />
       </Flex>
-      <Underline />
+      <MyUnderline />
       <Space height="60px" />
       <Flex direction="row" gap="20px">
         <CourseCard />
