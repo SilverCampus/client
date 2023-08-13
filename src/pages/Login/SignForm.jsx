@@ -8,6 +8,8 @@ import {
   brand_purple,
   brand_darkpurple,
 } from '../../utils/palette';
+import axios from 'axios';
+import { APIURL } from '../../App';
 
 // Imported Components
 import Flex from '../../components/atoms/Flex';
@@ -42,13 +44,27 @@ const SignForm = () => {
   // const [id, pw, getId, getPw, showPw, setShowPw] = useLoginForm();
   // const pwInputType = showPw ? 'text' : 'password';
 
+  const [email, setEmail] = useState('');
+  const [pw, setPw] = useState('');
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+
+    console.log(email, pw);
+
+    let body = {
+      username: email,
+      password: pw,
+      nickname: '갓경호',
+      is_instructor: true,
+    };
+
+    const request = axios.post(APIURL, body).then((response) => response.data);
+    console.log(request);
+  };
+
   return (
     <FormWrapper>
-      <FormContainer
-        onSubmit={(e) => {
-          e.preventDefault();
-        }}
-      >
+      <FormContainer onSubmit={onSubmitHandler}>
         {/* -------------------------------------------------------------------------- */}
         <Flex direction="row" justify="space-between">
           <Text size="20px" weight={700} children="아이디" />
@@ -58,7 +74,12 @@ const SignForm = () => {
           </div>
         </Flex>
         <Space height="8px" />
-        <StyledInput />
+        <StyledInput
+          value={email}
+          onChange={(e) => {
+            setEmail(e.target.value);
+          }}
+        />
         <Space height="25px" />
         {/* -------------------------------------------------------------------------- */}
         <Flex direction="row" justify="space-between">
@@ -69,7 +90,12 @@ const SignForm = () => {
           </div>
         </Flex>
         <Space height="8px" />
-        <StyledInput />
+        <StyledInput
+          value={pw}
+          onChange={(e) => {
+            setPw(e.target.value);
+          }}
+        />
         {/* -------------------------------------------------------------------------- */}
 
         <Line />

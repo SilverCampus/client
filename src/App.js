@@ -4,6 +4,8 @@ import Router from './Router';
 import GlobalStyle from './style/GlobalStyle';
 import AppContainer from './components/templates/AppContainer';
 
+export const APIURL = process.env.REACT_APP_BASE_URL;
+
 function App() {
   return (
     <BrowserRouter>
