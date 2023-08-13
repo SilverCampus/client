@@ -8,7 +8,7 @@ import Text from '../atoms/Text';
 const GoDown = ({ color, children }) => {
   return (
     <GoDownContainer>
-      <Text color={color} children={children} size={16} weight={700} />
+      <Text color={color} children={children} size="24px" weight={700} />
       <FontAwesomeIcon
         className="fa-2x"
         style={{ color: `${color}` }}

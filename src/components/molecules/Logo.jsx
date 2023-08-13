@@ -1,13 +1,10 @@
 import styled from 'styled-components';
-import { brand_white } from '../../utils/palette';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGraduationCap } from '@fortawesome/free-solid-svg-icons';
+import Logo_Bright from '../../assets/images/Logo_Bright.png';
 
-const Logo = ({ color = brand_white, height }) => {
+const Logo = ({ height }) => {
   return (
-    <LogoContainer color={color} height={height}>
-      <FontAwesomeIcon icon={faGraduationCap} />
-      Silver Campus
+    <LogoContainer height={height}>
+      <StyledImg src={Logo_Bright} />
     </LogoContainer>
   );
 };
@@ -16,13 +13,11 @@ const LogoContainer = styled.div`
   width: fit-content;
   height: ${({ height }) => height};
 
-  margin-top: 20px;
-  margin-left: 20px;
+  margin: 0 auto;
+`;
 
-  font:
-    30px 'Keania One',
-    cursive;
-  color: ${({ color }) => color};
+const StyledImg = styled.img`
+  height: 100%;
 `;
 
 export default Logo;
