@@ -1,8 +1,7 @@
-import { brand_black, brand_white } from '../../utils/palette';
+import { brand_black } from '../../utils/palette';
 
 // Imported Components
 import Space from '../../components/atoms/Space';
-import Wrapper from '../../components/atoms/Wrapper';
 import Heading from '../../components/molecules/Heading';
 import Heading2 from '../../components/molecules/Heading2';
 import MyUnderline from '../../components/atoms/MyUnderline';
