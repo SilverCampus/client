@@ -12,8 +12,6 @@ const Logo = ({ height }) => {
 const LogoContainer = styled.div`
   width: fit-content;
   height: ${({ height }) => height};
-
-  margin: 0 auto;
 `;
 
 const StyledImg = styled.img`
