@@ -24,23 +24,33 @@ const MyFooter = () => {
           <Developers type="BE" name="정태현" handle="nexDavid2020" />
         </Flex>
         <Space height="80px" />
-        <Flex width="auto" direction="row">
-          <Logo height="100px" />
+        <Flex width="auto" direction="row" gap="20px">
+          <Logo height="60px" />
           <GithubContainer>
             <FontAwesomeIcon
               icon={faGithub}
-              className="fa-4x"
+              className="fa-2x"
               style={{ color: `${brand_white}` }}
             />
-            <Text>https://github.com/SilverCampus</Text>
+
+            <a href="https://github.com/SilverCampus">
+              <Text color={brand_white}>https://github.com/SilverCampus</Text>
+            </a>
           </GithubContainer>
         </Flex>
-        <Space height="80px" />
+        <Space height="160px" />
       </Wrapper>
     </footer>
   );
 };
 
-const GithubContainer = styled.div``;
+const GithubContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  padding: 5px 20px;
+  border-left: 3px solid white;
+`;
 
 export default MyFooter;
