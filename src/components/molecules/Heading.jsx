@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import Text from '../atoms/Text';
 
-const Heading = ({ color, size, children }) => {
+const Heading = ({ color, size, children, className }) => {
   return (
-    <HeadingContainer>
+    <HeadingContainer className={className}>
       <Text children={children} color={color} size={size} weight={700} />
     </HeadingContainer>
   );

@@ -1,168 +1,132 @@
-import React from 'react';
 import styled from 'styled-components';
-import QuestionUnderline from '../../components/atoms/QuestionUnderline';
+import { brand_black, brand_blue, brand_white } from '../../utils/palette';
 
-const QuestionPage = () => {
+// Imported Components
+import Wrapper from '../../components/atoms/Wrapper';
+import Text from '../../components/atoms/Text';
+import Space from '../../components/atoms/Space';
+import Flex from '../../components/atoms/Flex';
+import { FixedLogo } from '../Search/SearchSection';
+import Heading from '../../components/molecules/Heading';
+import Heading2 from '../../components/molecules/Heading2';
+import MyUnderline from '../../components/atoms/MyUnderline';
+import FlatButton from '../../components/molecules/FlatButton';
+
+const Comments = () => {
   return (
-    <QuestionPageContainer>
-      <QuestionPageDiv>
-        <QuestionHeader>
-          <QuestionPageTitle>Q&A 게시판</QuestionPageTitle>
-          <VerticalLine>|</VerticalLine>
-          <QuestionCourseTitle>
-            비전공자도 쉽게 써먹는 실무 활용 SQL
-          </QuestionCourseTitle>
-        </QuestionHeader>
-        <QuestionUnderline width="190px"></QuestionUnderline>
-        <QuestionSection>
-          <QuestionTitle>4강 관련 질문입니다.</QuestionTitle>
-          <QuestionUser>김아무개</QuestionUser>
-          <Question>
-            4강에서 어떤 걸 설명하셨는데 그게 이렇고 저런 게 맞나요?
-          </Question>
-        </QuestionSection>
-        <AnswerWriteContainer>
-          <QuestionUnderline width="190px"></QuestionUnderline>
-          <AnswerInput placeholder="답변 입력"></AnswerInput>
-          <AnswerSubmit>전송</AnswerSubmit>
-        </AnswerWriteContainer>
-        <QuestionUnderline width="840px"></QuestionUnderline>
-        <AnswerContainer>
-          <AnswerTitle>
-            <AnswerUser>김경수</AnswerUser>
-            강의자의 답변
-          </AnswerTitle>
-          <AnswerDiv>네 맞습니다! 아주 잘 학습하고 계시네요 ^^</AnswerDiv>
-        </AnswerContainer>
-      </QuestionPageDiv>
-    </QuestionPageContainer>
+    <>
+      <Flex align="left" gap="10px">
+        <div>
+          <Text
+            color={brand_blue}
+            size="20px"
+            weight={700}
+            children="김경수 "
+          />
+          <Text
+            color={brand_blue}
+            size="20px"
+            weight={500}
+            children="강의자의 답변"
+          />
+        </div>
+        <Text
+          color={brand_black}
+          weight={700}
+          size="23px"
+          children="네 정답입니다"
+        />
+      </Flex>
+      <Space height="50px" />
+    </>
   );
 };
 
-const QuestionPageContainer = styled.div`
-  max-width: 1920px;
-  display: flex;
-  flex-direction: column;
-  justify-contents: center;
-  align-items: center;
-`;
+const QuestionPage = () => {
+  return (
+    <Wrapper>
+      <FixedLogo type="dark" height="55px" />
+      <QuestionSection>
+        <Space height="175px" />
+        <Flex justify="left" direction="row" gap="10px">
+          <Text
+            color={brand_blue}
+            size="25px"
+            weight={700}
+            children="Q&A 게시판 】"
+          />
+          <Text
+            color={brand_blue}
+            size="25px"
+            weight={500}
+            children="비전공자도 쉽게 써먹는 실무 활용 SQL"
+          />
+        </Flex>
+        <Space height="50px" />
+        <CustomHeading size="55px" children="4강 관련 질문입니다." />
+        <Space height="10px" />
+        <CustomHeading2 size="20px" children="김아무개" />
+        <Space height="50px" />
+        <CustomHeading2
+          size="25px"
+          children="4강에서 어떤 걸 설명하셨는데 그게 이렇고 저런 게 맞나요?"
+        />
+        <CustomUnderline width="160px" color={brand_black} />
+        <Flex align="end" gap="10px">
+          <AnswerInput placeholder="답변 입력"></AnswerInput>
+          <FlatButton bgColor={brand_blue} width="60px" height="40px">
+            <Text
+              weight={700}
+              size="15px"
+              color={brand_white}
+              children="전송"
+            />
+          </FlatButton>
+        </Flex>
+        <CustomUnderline width="100%" color={brand_black} />
 
-const QuestionPageDiv = styled.div`
-  width: 840px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: 100px 10px 150px;
-  font-family: SUITE-Regular;
-  font-size: 20px;
-  font-weight: 500;
-  color: #1c1c1c;
-  font-style: normal;
-  line-height: normal;
-`;
-
-const QuestionHeader = styled.div`
-  width: 840px;
-  color: #078ca3;
-  padding: 10px 0;
-  margin-bottom: 25px;
-`;
-
-const QuestionPageTitle = styled.span`
-  font-weight: 700;
-`;
-
-const VerticalLine = styled.span`
-  margin: 0 8px;
-`;
-
-const QuestionCourseTitle = styled.span`
-  font-weight: 500;
-`;
+        <Comments />
+        <Comments />
+        <Comments />
+        <Comments />
+      </QuestionSection>
+    </Wrapper>
+  );
+};
 
 const QuestionSection = styled.div`
-  margin-top: 25px;
+  width: 850px;
+  color: ${brand_black};
+  margin: 0 auto;
 `;
 
-const QuestionTitle = styled.div`
-  color: #322653;
-  font-size: 54px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  padding: 10px 0;
+const CustomHeading = styled(Heading)`
+  text-align: left;
 `;
 
-const QuestionUser = styled.div`
-  font-size: 20px;
+const CustomHeading2 = styled(Heading2)`
+  text-align: left;
 `;
 
-const Question = styled.div`
-  margin: 30px 0 120px 0;
-  padding: 20px 0;
-  font-size: 25px;
-`;
-
-const AnswerContainer = styled.div`
-  margin-top: 50px;
-`;
-
-const AnswerWriteContainer = styled.div`
-  width: 840px;
-  display: flex;
-  flex-direction: column;
-  align-items: end;
-  margin-bottom: 50px;
+const CustomUnderline = styled(MyUnderline)`
+  width: ${({ width }) => width};
+  height: 0;
+  border: none;
+  border-bottom: 1px solid ${({ color }) => color};
+  margin: 50px 0 50px auto;
 `;
 
 const AnswerInput = styled.textarea`
-  width: 839px;
-  height: 104px;
+  width: 100%;
+  height: 100px;
   padding: 15px;
-  align-items: center;
-  flex-shrink: 0;
   border-radius: 12px;
   border: 1px solid #b0b0b0;
-  margin-top: 80px;
   resize: none;
 
   &:focus {
     outline: none;
   }
-`;
-
-const AnswerSubmit = styled.button`
-  display: inline-flex;
-  margin-top: 10px;
-  padding: 10px 16px;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  color: white;
-  border-radius: 9px;
-  border-bottom: 3px solid #b0b0b0;
-  background: #078ca3;
-
-  &:hover {
-    background-color: #71bdc9;
-    cursor: pointer;
-  }
-`;
-
-const AnswerTitle = styled.div`
-  padding: 5px 0;
-  color: #078ca3;
-  font-weight: 500;
-`;
-
-const AnswerUser = styled.span`
-  font-weight: 700;
-  margin-right: 4px;
-`;
-
-const AnswerDiv = styled.span`
-  font-size: 25px;
-  padding: 8px 0;
 `;
 
 export default QuestionPage;

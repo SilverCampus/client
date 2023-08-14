@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-const MyUnderline = ({ color }) => {
-  return <UnderlineContainer color={color} />;
+const MyUnderline = ({ color, className }) => {
+  return <UnderlineContainer color={color} className={className} />;
 };
 const UnderlineContainer = styled.div`
   width: 190px;

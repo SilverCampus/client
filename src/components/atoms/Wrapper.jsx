@@ -1,8 +1,13 @@
 import styled from 'styled-components';
 
-const Wrapper = ({ img, bgColor, children, linear }) => {
+const Wrapper = ({ img, bgColor, children, linear, className }) => {
   return (
-    <StyledWrapper img={img} bgColor={bgColor} linear={linear}>
+    <StyledWrapper
+      img={img}
+      bgColor={bgColor}
+      linear={linear}
+      className={className}
+    >
       <StyledContainer>{children}</StyledContainer>
     </StyledWrapper>
   );

@@ -31,7 +31,7 @@ const SearchSection = () => {
   );
 };
 
-const FixedLogo = styled(Logo)`
+export const FixedLogo = styled(Logo)`
   position: absolute;
   top: 30px;
   left: 40px;
