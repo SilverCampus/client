@@ -1,10 +1,15 @@
 import styled from 'styled-components';
 import Logo_Bright from '../../assets/images/Logo_Bright.png';
+import Logo_Dark from '../../assets/images/Logo_Dark.png';
 
-const Logo = ({ height, className }) => {
+const Logo = ({ type = 'bright', height, className }) => {
   return (
     <LogoContainer height={height} className={className}>
-      <StyledImg src={Logo_Bright} />
+      {type === 'bright' ? (
+        <StyledImg src={Logo_Bright} />
+      ) : (
+        <StyledImg src={Logo_Dark} />
+      )}
     </LogoContainer>
   );
 };

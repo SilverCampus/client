@@ -8,14 +8,15 @@ import {
   brand_purple,
   brand_darkpurple,
 } from '../../utils/palette';
-import axios from 'axios';
-import { APIURL } from '../../App';
 
 // Imported Components
 import Flex from '../../components/atoms/Flex';
 import Text from '../../components/atoms/Text';
 import PopButton from '../../components/molecules/PopButton';
 import Space from '../../components/atoms/Space';
+
+// Imported Functions
+import { onRegister } from './signInUp';
 
 const ButtonColors = {
   color: brand_white,
@@ -46,20 +47,9 @@ const SignForm = () => {
 
   const [email, setEmail] = useState('');
   const [pw, setPw] = useState('');
+
   const onSubmitHandler = (e) => {
     e.preventDefault();
-
-    console.log(email, pw);
-
-    let body = {
-      username: email,
-      password: pw,
-      nickname: '갓경호',
-      is_instructor: true,
-    };
-
-    // const request = axios.post(APIURL, body).then((response) => response.data);
-    // console.log(request);
   };
 
   return (

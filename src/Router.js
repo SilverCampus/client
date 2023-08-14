@@ -6,10 +6,9 @@ import SearchPage from './pages/Search/SearchPage';
 import MainPage from './pages/Main/MainPage';
 import MyPage from './pages/MyPage/index';
 import Course from './pages/Course/index';
-import Lecture from './pages/Lecture/index';
 import MyFooter from './components/organisms/MyFooter';
 import QuestionPage from './pages/Question/QuestionPage';
-import PlayPage from './pages/Play/PlayPage';
+import LecturePage from './pages/Lecture/LecturePage';
 
 const Router = () => {
   const pathName = useLocation();
@@ -22,9 +21,8 @@ const Router = () => {
         <Route path="/main/:topic" element={<MainPage />} />
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/course" element={<Course />} />
-        <Route path="/lecture" element={<Lecture />} />
-        <Route path="/question" element={<QuestionPage/>} />
-        <Route path="/play" element={<PlayPage/>} />
+        <Route path="/lecture" element={<LecturePage />} />
+        <Route path="/question" element={<QuestionPage />} />
       </Routes>
       <MyFooter />
     </>

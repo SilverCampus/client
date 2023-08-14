@@ -4,7 +4,7 @@ import Router from './Router';
 import GlobalStyle from './style/GlobalStyle';
 import AppContainer from './components/templates/AppContainer';
 
-export const APIURL = process.env.REACT_APP_BASE_URL;
+export const BaseUrl = 'http://127.0.0.1:8000';
 
 function App() {
   return (
