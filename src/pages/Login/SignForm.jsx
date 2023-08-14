@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
 import useLoginForm from './useLoginForm';
+import { useNavigate } from 'react-router-dom';
 import {
   brand_black,
   brand_white,
@@ -16,7 +16,7 @@ import PopButton from '../../components/molecules/PopButton';
 import Space from '../../components/atoms/Space';
 
 // Imported Functions
-import { onRegister } from './signInUp';
+import { onRegister, onLogin } from './signInUp';
 
 const ButtonColors = {
   color: brand_white,
@@ -38,18 +38,22 @@ const TypeTexts = {
 
 const SignForm = () => {
   const [signState, setState] = useState('login');
-
   const nav = useNavigate(null);
-  const goSearch = () => nav('/search');
 
   // const [id, pw, getId, getPw, showPw, setShowPw] = useLoginForm();
   // const pwInputType = showPw ? 'text' : 'password';
 
-  const [email, setEmail] = useState('');
+  const [id, setId] = useState('');
   const [pw, setPw] = useState('');
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
+
+    if (signState === 'login') {
+      if (onLogin(id, pw) === true) nav('/search');
+    } else {
+      onRegister(signState, id, pw);
+    }
   };
 
   return (
@@ -65,9 +69,9 @@ const SignForm = () => {
         </Flex>
         <Space height="8px" />
         <StyledInput
-          value={email}
+          value={id}
           onChange={(e) => {
-            setEmail(e.target.value);
+            setId(e.target.value);
           }}
         />
         <Space height="25px" />

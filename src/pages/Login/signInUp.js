@@ -21,6 +21,32 @@ export const onRegister = async (signState, id, pw) => {
       alert('이미 존재하는 id');
     }
   } catch (err) {
-    alert('Api 실패');
+    alert('onRegister - Api 실패');
   }
+};
+
+export const onLogin = async (id, pw) => {
+  let apiUrl = BaseUrl + '/campus/login/';
+
+  let body = {
+    username: id,
+    password: pw,
+  };
+
+  try {
+    const res = await axios.post(apiUrl, body);
+
+    if (res.status === 200) {
+      localStorage.setItem('key', res.data.access);
+
+      alert('로그인 성공!');
+      return true;
+    } else if (res.status === 400) {
+      alert('계정 없음');
+    }
+  } catch (err) {
+    alert('onLogin - Api 실패');
+  }
+
+  return false;
 };
