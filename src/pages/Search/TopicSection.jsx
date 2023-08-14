@@ -16,7 +16,7 @@ import PopButton from '../../components/molecules/PopButton';
 import Flex from '../../components/atoms/Flex';
 
 import { categoryList1, categoryList2 } from '../../utils/categoryList';
-const ButtonColors = {
+export const BlueButtonColors = {
   color: brand_white,
   bgColor: brand_blue,
   shadowColor: brand_darkblue,
@@ -48,7 +48,7 @@ const TopicSection = () => {
               width="195px"
               height="60px"
               children={it}
-              colors={ButtonColors}
+              colors={BlueButtonColors}
             />
           ))}
         </Flex>
@@ -60,7 +60,7 @@ const TopicSection = () => {
               width="195px"
               height="60px"
               children={it}
-              colors={ButtonColors}
+              colors={BlueButtonColors}
             />
           ))}
         </Flex>
