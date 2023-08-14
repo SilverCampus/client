@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { brand_black } from '../../utils/palette';
+import { brand_black, brand_white } from '../../utils/palette';
 
 // Default Image
 import defaultImg from '../../assets/images/default_image.jpeg';
@@ -39,6 +39,7 @@ const PersonalBoxContainer = styled.div`
   }};
   text-align: ${({ type }) => type};
   box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.25);
+  background-color: ${brand_white};
 `;
 
 export default PresonalBox;
