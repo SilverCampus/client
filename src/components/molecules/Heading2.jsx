@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import Text from '../atoms/Text';
 
-const Heading2 = ({ color, children }) => {
+const Heading2 = ({ color, size, children }) => {
   return (
     <Heading2Container>
-      <Text children={children} color={color} size="24px" weight={500} />
+      <Text children={children} color={color} size={size} weight={500} />
     </Heading2Container>
   );
 };
@@ -14,6 +14,7 @@ const Heading2Container = styled.div`
   width: 100%;
   height: auto;
 
+  font-size: ${({ size }) => size};
   text-align: center;
 `;
 

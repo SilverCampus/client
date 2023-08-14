@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+
+import Wrapper from '../../components/atoms/Wrapper';
 import SearchSection from './SearchSection';
 import TopicSection from './TopicSection';
 import PersonalSection from './PersonalSection';
@@ -9,8 +11,10 @@ const SearchPage = () => {
     <SearchContainer>
       {/* <Navigation /> */}
       <SearchSection />
-      <TopicSection />
-      <PersonalSection />
+      <Wrapper linear="linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(170, 170, 170, 0.15) 100%)">
+        <TopicSection />
+        {/* <PersonalSection /> */}
+      </Wrapper>
     </SearchContainer>
   );
 };
