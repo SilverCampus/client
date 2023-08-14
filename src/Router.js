@@ -9,6 +9,7 @@ import Course from './pages/Course/index';
 import Lecture from './pages/Lecture/index';
 import MyFooter from './components/organisms/MyFooter';
 import QuestionPage from './pages/Question/QuestionPage';
+import PlayPage from './pages/Play/PlayPage';
 
 const Router = () => {
   const pathName = useLocation();
@@ -23,6 +24,7 @@ const Router = () => {
         <Route path="/course" element={<Course />} />
         <Route path="/lecture" element={<Lecture />} />
         <Route path="/question" element={<QuestionPage/>} />
+        <Route path="/play" element={<PlayPage/>} />
       </Routes>
       <MyFooter />
     </>
