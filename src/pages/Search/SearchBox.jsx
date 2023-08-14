@@ -6,14 +6,14 @@ import { brand_white } from '../../utils/palette';
 // Imported Components
 import Flex from '../../components/atoms/Flex';
 
-const SearchBox = () => {
+const SearchBox = ({ width }) => {
   return (
     <>
-      <SearchBoxContainer>
+      <SearchBoxContainer width={width}>
         <Flex direction="row">
           <FontAwesomeIcon
             icon={faMagnifyingGlass}
-            className="fa-4x"
+            className="fa-5x"
             style={{ color: `${brand_white}` }}
           />
           <StyledInput />
@@ -26,15 +26,15 @@ const SearchBox = () => {
 
 const SearchBoxContainer = styled.div`
   margin: 0 auto;
-  width: 625px;
+  width: ${({ width }) => width};
 `;
 
 const BoldUnderline = styled.div`
   width: 100%;
   height: 1px;
 
-  margin: 20px auto;
-  border: 4px solid ${brand_white};
+  margin: 35px auto;
+  border: 6px solid ${brand_white};
   border-radius: 999px;
 `;
 
@@ -45,8 +45,10 @@ const StyledInput = styled.input`
   outline: none;
 
   text-indent: 30px;
-  font-size: 60px;
   color: ${brand_white};
+  font-size: 60px;
+  font-family: 'SUITE-Regular';
+  font-weight: 300;
 
   &::placeholder {
   }

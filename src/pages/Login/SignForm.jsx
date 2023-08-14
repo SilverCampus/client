@@ -58,8 +58,8 @@ const SignForm = () => {
       is_instructor: true,
     };
 
-    const request = axios.post(APIURL, body).then((response) => response.data);
-    console.log(request);
+    // const request = axios.post(APIURL, body).then((response) => response.data);
+    // console.log(request);
   };
 
   return (
@@ -99,14 +99,14 @@ const SignForm = () => {
         {/* -------------------------------------------------------------------------- */}
 
         <Line />
-        <SubmitButton colors={ButtonColors}>
+        <PopButton width="100%" height="45px" colors={ButtonColors}>
           <Text
             color={brand_white}
             size="20px"
             weight={700}
             children={`${TypeTexts[signState].submit}`}
           ></Text>
-        </SubmitButton>
+        </PopButton>
         <Space height="50px" />
         {signState === 'login' ? null : (
           <>
@@ -176,12 +176,6 @@ const FormWrapper = styled.div`
 
 const FormContainer = styled.form`
   width: 285px;
-`;
-
-const SubmitButton = styled(PopButton)`
-  display: block;
-  width: 100%;
-  padding: 10px;
 `;
 
 const StyledInput = styled.input`

@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import Logo_Bright from '../../assets/images/Logo_Bright.png';
 
-const Logo = ({ height }) => {
+const Logo = ({ height, className }) => {
   return (
-    <LogoContainer height={height}>
+    <LogoContainer height={height} className={className}>
       <StyledImg src={Logo_Bright} />
     </LogoContainer>
   );

@@ -22,7 +22,7 @@ const PopButtonContainer = styled.button`
   height: ${({ height }) => height};
   border-radius: 10px;
   border-bottom: 5px solid ${({ colors }) => colors.shadowColor};
-  padding-top: 10px;
+  padding-top: 5px;
 
   color: ${({ colors }) => colors.color};
   background-color: ${({ colors }) => colors.bgColor};
@@ -32,6 +32,8 @@ const PopButtonContainer = styled.button`
   &:active {
     filter: brightness(110%);
     box-shadow: none;
+    padding-bottom: 5px;
+    padding-top: none;
     border-top: 5px solid transparent;
     border-bottom: none;
   }

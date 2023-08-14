@@ -11,13 +11,18 @@ import Flex from '../../components/atoms/Flex';
 
 const PersonalSection = () => {
   return (
-    <SearchSectionContainer>
+    <div>
       <Space height="145px" />
-      <Heading color={brand_black} children="개인 기록을 확인하세요!" />
+      <Heading
+        color={brand_black}
+        size="45px"
+        children="개인 기록을 확인하세요!"
+      />
       <MyUnderline color={brand_black} />
       <Space height="40px" />
       <Heading2
         color={brand_black}
+        size="24px"
         children="더 자세한 기록은 개인 페이지를 확인하세요."
       />
       <Space height="85px" />
@@ -34,14 +39,8 @@ const PersonalSection = () => {
         />
       </Flex>
       <Space height="210px" />
-    </SearchSectionContainer>
+    </div>
   );
 };
-
-const SearchSectionContainer = styled.div`
-  width: 100%;
-  height: auto;
-  overflow: hidden;
-`;
 
 export default PersonalSection;
