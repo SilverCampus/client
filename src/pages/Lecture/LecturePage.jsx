@@ -1,91 +1,121 @@
 import React from 'react';
 import styled from 'styled-components';
-import OtherVideosList from './OtherVideosList';
-import VideoTitleContainer from './VideoTitleDiv';
 
-const PlayPage = () => {
+import { brand_black, brand_white } from '../../utils/palette';
+import { BlueButtonColors } from '../Search/TopicSection';
+
+import Text from '../../components/atoms/Text';
+import Wrapper from '../../components/atoms/Wrapper';
+import Space from '../../components/atoms/Space';
+import Flex from '../../components/atoms/Flex';
+import { FixedLogo } from '../Search/SearchSection';
+import PopButton from '../../components/molecules/PopButton';
+
+const OtherVideosList = ({ num, title }) => {
   return (
-    <PlayPageContainer>
-      <PlayPageDiv>
-        <PlayVideo></PlayVideo>
-        <PlayLectureContainer>
-          <CategoryTag>운동</CategoryTag>
-          <PlayLectureTitle>
-            비전공자도 쉽게 배워 바로 써먹는 실무 활용 SQL
-          </PlayLectureTitle>
-          <VideoTitleContainer
-            videonumber={'1'}
-            videotitle={'데이터베이스'}
-          ></VideoTitleContainer>
-        </PlayLectureContainer>
-        <OtherVideosContainer>
-          <OtherVideosList
-            videosnumber={'2'}
-            videostitle={'두 번째 강의'}
-          ></OtherVideosList>
-          <OtherVideosList
-            videosnumber={'3'}
-            videostitle={'세 번째 강의'}
-          ></OtherVideosList>
-          <OtherVideosList
-            videosnumber={'4'}
-            videostitle={'네 번째 강의'}
-          ></OtherVideosList>
-          <OtherVideosList
-            videosnumber={'5'}
-            videostitle={'다섯 번째 강의'}
-          ></OtherVideosList>
-          <OtherVideosList
-            videosnumber={'6'}
-            videostitle={'여섯 번째 강의'}
-          ></OtherVideosList>
-          <OtherVideosList
-            videosnumber={'7'}
-            videostitle={'마지막 강의'}
-          ></OtherVideosList>
-        </OtherVideosContainer>
-      </PlayPageDiv>
-    </PlayPageContainer>
+    <li>
+      <Flex direction="row" justify="left" width="auto" gap="10px">
+        <Text size="22px" weight={500} color="#a1a1a1" children={`${num}강.`} />
+        <Text size="22px" weight={500} color="#a1a1a1" children={title} />
+      </Flex>
+    </li>
   );
 };
 
-const PlayPageContainer = styled.div`
-  max-width: 1920px;
-  display: flex;
-  flex-direction: column;
-  justify-contents: center;
-  align-items: center;
-`;
+const TitleVideosList = ({ num, title }) => {
+  return (
+    <TitleVideoDiv>
+      <Flex direction="row" justify="left" width="auto" gap="10px">
+        <Text
+          size="40px"
+          weight={700}
+          color={brand_black}
+          children={`${num}강.`}
+        />
+        <Text size="40px" weight={700} color={brand_black} children={title} />
+      </Flex>
+    </TitleVideoDiv>
+  );
+};
 
-const PlayPageDiv = styled.div`
+const LecturePage = () => {
+  return (
+    <Wrapper>
+      <FixedLogo type="dark" height="55px" />
+      <LectureSection>
+        <Space height="175px" />
+        <VideoSection />
+        <Space height="50px" />
+        <LectureHeader>
+          <Flex width="auto" align="start" gap="10px">
+            <CategoryTag children="운동" />
+            <Text
+              size="20px"
+              children="비전공자도 쉽게 배워 바로 써먹는 실무 활용 SQL"
+            />
+          </Flex>
+          <PopButton colors={BlueButtonColors} width="200px" height="50px">
+            <Text size="20px" color={brand_white} children="학습 완료하기" />
+          </PopButton>
+        </LectureHeader>
+        <TitleVideosList num={1} title="첫 번째 강의" />
+        <Space height="50px" />
+
+        <VideoList>
+          <OtherVideosList num={2} title="두 번째 강의" />
+          <OtherVideosList num={2} title="두 번째 강의" />
+          <OtherVideosList num={2} title="두 번째 강의" />
+          <OtherVideosList num={2} title="두 번째 강의" />
+          <OtherVideosList num={2} title="두 번째 강의" />
+        </VideoList>
+      </LectureSection>
+      <Space height="175px" />
+    </Wrapper>
+  );
+};
+
+const LectureSection = styled.div`
   width: 1050px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 100px 10px 150px;
-  font-family: SUITE-Regular;
-  font-size: 20px;
-  font-weight: 500;
-  color: #322653;
-  font-style: normal;
-  line-height: normal;
-  background-color: white;
+  color: ${brand_black};
+  margin: 0 auto;
 `;
 
-const PlayVideo = styled.div`
-  width: 1000px;
-  height: 562.5px;
+const VideoSection = styled.div`
+  width: 100%;
+  height: 550px;
   background-color: #eee;
   border: 1px solid #dbdbdb;
-  margin: 10px;
 `;
 
-const PlayLectureContainer = styled.div`
-  width: 1000px;
-  padding: 10px 44px;
+const TitleVideoDiv = styled.div`
+  width: 100%;
+  padding: 20px 30px;
   border-left: 1px solid #dbdbdb;
   border-right: 1px solid #dbdbdb;
-  margin-top: 30px;
+`;
+
+const LectureHeader = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+  padding: 20px 30px;
+  border-left: 1px solid #dbdbdb;
+  border-right: 1px solid #dbdbdb;
+  color: ${brand_black};
+`;
+
+const VideoList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  width: 100%;
+  padding: 20px 30px;
+  border-left: 1px solid #dbdbdb;
+  border-right: 1px solid #dbdbdb;
 `;
 
 const CategoryTag = styled.div`
@@ -103,16 +133,4 @@ const CategoryTag = styled.div`
   font-weight: 500;
 `;
 
-const PlayLectureTitle = styled.div`
-  margin: 10px 0 20px 0;
-`;
-
-const OtherVideosContainer = styled.ul`
-  width: 1000px;
-  padding: 0px 44px;
-  border-left: 1px solid #dbdbdb;
-  border-right: 1px solid #dbdbdb;
-  margin-top: 30px;
-`;
-
-export default PlayPage;
+export default LecturePage;
