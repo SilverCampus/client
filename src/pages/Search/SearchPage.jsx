@@ -13,7 +13,7 @@ const SearchPage = () => {
       <SearchSection />
       <Wrapper linear="linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(170, 170, 170, 0.15) 100%)">
         <TopicSection />
-        {/* <PersonalSection /> */}
+        <PersonalSection />
       </Wrapper>
     </SearchContainer>
   );

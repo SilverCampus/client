@@ -12,6 +12,7 @@ const GlobalStyle = createGlobalStyle`
     };
     button {
         border: none;
+        padding: 0;
     };
     *::-webkit-scrollbar {
         display: none;
