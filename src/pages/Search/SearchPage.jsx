@@ -7,7 +7,7 @@ import Navigation from '../../components/organisms/Navigation';
 const SearchPage = () => {
   return (
     <SearchContainer>
-      <Navigation />
+      {/* <Navigation /> */}
       <SearchSection />
       <TopicSection />
       <PersonalSection />
@@ -16,8 +16,7 @@ const SearchPage = () => {
 };
 
 const SearchContainer = styled.div`
-  width: 100%;
-  height: auto;
+  position: relative;
 `;
 
 export default SearchPage;
