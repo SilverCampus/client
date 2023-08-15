@@ -1,10 +1,19 @@
 import styled from 'styled-components';
 import defaultImg from '../../assets/images/default_image.jpeg';
 
-const CourseCard = ({ img = defaultImg }) => {
+// Imported Components
+import Text from '../../components/atoms/Text';
+
+const CourseCard = ({
+  img = defaultImg,
+  title = 'default',
+  description = 'default',
+}) => {
   return (
     <CourseCardContainer>
       <ThumbNail img={img} />
+      <Text>{title}</Text>
+      <Text>{description}</Text>
     </CourseCardContainer>
   );
 };

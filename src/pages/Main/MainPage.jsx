@@ -28,7 +28,7 @@ const MainPage = () => {
     try {
       const res = await axios.get(url);
 
-      setData(res.response.data);
+      setData(res.data);
       setLoading(false);
     } catch (err) {
       if (err.response && err.response.status === 400) alert('검색 한 자 이상');
@@ -42,7 +42,6 @@ const MainPage = () => {
 
   // useEffect(() => {
   //   getApiData();
-  //   console.log(data);
   // }, []);
 
   return (
@@ -62,11 +61,19 @@ const MainPage = () => {
       </Flex>
       <MyUnderline />
       <Space height="100px" />
-      <Flex direction="row" gap="40px">
-        <CourseCard />
-        <CourseCard />
-        <CourseCard />
-      </Flex>
+      {loading ? (
+        '로딩중'
+      ) : (
+        <Flex direction="row" gap="40px">
+          {data.map((it) => (
+            <CourseCard
+              key={it.id}
+              title={it.title}
+              description={it.description}
+            />
+          ))}
+        </Flex>
+      )}
       <Space height="100px" />
       <Flex direction="row" gap="40px">
         <CourseCard />
