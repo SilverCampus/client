@@ -1,10 +1,14 @@
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { useParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { brand_black, brand_blue } from '../../utils/palette';
+import { BaseUrl } from '../../App';
+import axios from 'axios';
 
 // Imported Components
-import Logo from '../../components/molecules/Logo';
+import { FixedLogo } from '../Search/SearchSection';
 import Navigation from '../../components/organisms/Navigation';
+import Wrapper from '../../components/atoms/Wrapper';
 import Flex from '../../components/atoms/Flex';
 import Space from '../../components/atoms/Space';
 import Text from '../../components/atoms/Text';
@@ -12,15 +16,43 @@ import MyUnderline from '../../components/atoms/MyUnderline';
 import CourseCard from './CourseCard';
 
 const MainPage = () => {
-  const { topic } = useParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const searched = searchParams.get('search');
+
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  const getApiData = async () => {
+    let url = BaseUrl + `/api/search-courses/?keyword=${searched}`;
+
+    try {
+      const res = await axios.get(url);
+
+      setData(res.response.data);
+      setLoading(false);
+    } catch (err) {
+      if (err.response && err.response.status === 400) alert('검색 한 자 이상');
+      else if (err.response && err.response.status === 404)
+        alert('검색 결과 없음');
+      else alert('api error');
+    }
+
+    return false;
+  };
+
+  // useEffect(() => {
+  //   getApiData();
+  //   console.log(data);
+  // }, []);
 
   return (
-    <MainPageContainer>
-      <Navigation />
-      <Logo color={brand_black} />
-      <Space height="60px" />
+    // Wrapper 감싸기...
+    <Wrapper>
+      {/* <Navigation /> */}
+      <FixedLogo type="dark" height="55px" />
+      <Space height="175px" />
       <Flex gap="10px" direction="row" width="auto" height="auto">
-        <Text weight={700} color={brand_blue} size="50px" children={topic} />
+        <Text weight={700} color={brand_blue} size="50px" children={searched} />
         <Text
           weight={700}
           color={brand_black}
@@ -29,23 +61,21 @@ const MainPage = () => {
         />
       </Flex>
       <MyUnderline />
-      <Space height="60px" />
-      <Flex direction="row" gap="20px">
+      <Space height="100px" />
+      <Flex direction="row" gap="40px">
         <CourseCard />
         <CourseCard />
         <CourseCard />
       </Flex>
-      <Space height="60px" />
-      <Flex direction="row" gap="20px">
+      <Space height="100px" />
+      <Flex direction="row" gap="40px">
         <CourseCard />
         <CourseCard />
         <CourseCard />
       </Flex>
-      <Space height="60px" />
-    </MainPageContainer>
+      <Space height="175px" />
+    </Wrapper>
   );
 };
-
-const MainPageContainer = styled.div``;
 
 export default MainPage;

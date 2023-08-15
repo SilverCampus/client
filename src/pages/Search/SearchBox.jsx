@@ -1,12 +1,22 @@
+import { useState } from 'react';
+import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import styled from 'styled-components';
 import { brand_white } from '../../utils/palette';
+import { useNavigate } from 'react-router-dom';
 
 // Imported Components
 import Flex from '../../components/atoms/Flex';
 
 const SearchBox = ({ width }) => {
+  const [input, setInput] = useState('');
+  const nav = useNavigate(null);
+
+  const handleEnter = (e) => {
+    if (e.key !== 'Enter') return;
+    nav(`/main?search=${input}`);
+  };
+
   return (
     <>
       <SearchBoxContainer width={width}>
@@ -16,7 +26,11 @@ const SearchBox = ({ width }) => {
             className="fa-5x"
             style={{ color: `${brand_white}` }}
           />
-          <StyledInput />
+          <StyledInput
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={handleEnter}
+          />
         </Flex>
         <BoldUnderline />
       </SearchBoxContainer>

@@ -18,7 +18,7 @@ const UniqueSection = () => {
         children="실버 캠퍼스만의 차별점"
       />
       <MyUnderline color={brand_black} />
-      <Space height="30px" />
+      <Space height="50px" />
       <Heading2 color={brand_black} children="우리는 이렇게 다릅니다 (❁´◡`❁)" />
       <Space height="270px" />
       <Flex width="auto" gap="80px">
