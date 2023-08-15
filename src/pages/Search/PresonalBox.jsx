@@ -7,15 +7,27 @@ import defaultImg from '../../assets/images/default_image.jpeg';
 // Imported Components
 import Text from '../../components/atoms/Text';
 
-const PresonalBox = ({ type, img = defaultImg, heading, subHeading }) => {
-  console.log(img === defaultImg);
+const PresonalBox = ({ type, heading, subHeading, data, loading }) => {
   return (
     <Container>
-      <Text children={heading} color={brand_black} size={20} weight={700} />
-      <Text children={subHeading} color={brand_black} size={16} weight={500} />
-      <PersonalBoxContainer type={type}>
-        <ImgBox img={img} />
-      </PersonalBoxContainer>
+      {loading ? (
+        '로딩중'
+      ) : (
+        <>
+          <Text children={heading} color={brand_black} size={20} weight={700} />
+          <Text
+            children={subHeading}
+            color={brand_black}
+            size={16}
+            weight={500}
+          />
+          <PersonalBoxContainer type={type}>
+            <ImgBox img={data.thumbnail} />
+            <Text children={data.title} />
+            <Text children={data.description} />
+          </PersonalBoxContainer>
+        </>
+      )}
     </Container>
   );
 };

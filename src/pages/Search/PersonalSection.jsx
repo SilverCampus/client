@@ -9,7 +9,7 @@ import Space from '../../components/atoms/Space';
 import PresonalBox from './PresonalBox';
 import Flex from '../../components/atoms/Flex';
 
-const PersonalSection = () => {
+const PersonalSection = ({ recentlyWatched, loading1 }) => {
   return (
     <div>
       <Space height="145px" />
@@ -31,12 +31,14 @@ const PersonalSection = () => {
           type="left"
           heading="구매하신 강의"
           subHeading="가장 최근에 시청하신 강의입니다."
+          data={recentlyWatched}
+          loading={loading1}
         />
-        <PresonalBox
+        {/* <PresonalBox
           type="right"
           heading="구매하신 강의"
           subHeading="가장 최근에 시청하신 강의입니다."
-        />
+        /> */}
       </Flex>
       <Space height="210px" />
     </div>
