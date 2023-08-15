@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { BaseUrl } from '../../App';
+import { useNavigate } from 'react-router-dom';
 
 export const onRegister = async (signState, id, pw) => {
   let apiUrl = BaseUrl + '/campus/register/';
@@ -20,27 +21,4 @@ export const onRegister = async (signState, id, pw) => {
     if (err.response.status === 400) alert('이미 존재하는 id');
     else alert('onRegister - Api 실패');
   }
-};
-
-export const onLogin = async (id, pw) => {
-  let apiUrl = BaseUrl + '/campus/login/';
-
-  let body = {
-    username: id,
-    password: pw,
-  };
-
-  try {
-    const res = await axios.post(apiUrl, body);
-
-    localStorage.setItem('key', res.data.access);
-
-    alert('로그인 성공!');
-    return true;
-  } catch (err) {
-    if (err.response && err.response.status === 400) alert('계정 없음');
-    else alert('onLogin - Api 실패');
-  }
-
-  return false;
 };

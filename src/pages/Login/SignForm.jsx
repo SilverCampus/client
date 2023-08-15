@@ -2,6 +2,8 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import useLoginForm from './useLoginForm';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { BaseUrl } from '../../App';
 import {
   brand_black,
   brand_white,
@@ -16,7 +18,7 @@ import PopButton from '../../components/molecules/PopButton';
 import Space from '../../components/atoms/Space';
 
 // Imported Functions
-import { onRegister, onLogin } from './signInUp';
+import { onRegister } from './signInUp';
 
 const ButtonColors = {
   color: brand_white,
@@ -46,11 +48,32 @@ const SignForm = () => {
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');
 
+  const onLogin = async (id, pw) => {
+    let apiUrl = BaseUrl + '/campus/login/';
+
+    let body = {
+      username: id,
+      password: pw,
+    };
+
+    try {
+      const res = await axios.post(apiUrl, body);
+
+      localStorage.setItem('key', res.data.access);
+
+      alert('로그인 성공!');
+      nav('/search');
+    } catch (err) {
+      if (err.response && err.response.status === 400) alert('계정 없음');
+      else alert('onLogin - Api 실패');
+    }
+  };
+
   const onSubmitHandler = (e) => {
     e.preventDefault();
 
     if (signState === 'login') {
-      if (onLogin(id, pw) === true) nav('/search');
+      onLogin(id, pw);
     } else {
       onRegister(signState, id, pw);
     }
