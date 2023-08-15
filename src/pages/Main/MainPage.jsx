@@ -68,6 +68,7 @@ const MainPage = () => {
           {data.map((it) => (
             <CourseCard
               key={it.id}
+              id={it.id}
               title={it.title}
               description={it.description}
             />

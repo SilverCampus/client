@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
+import { BaseUrl } from '../../App';
 
 import { brand_black, brand_white } from '../../utils/palette';
 import { BlueButtonColors } from '../Search/TopicSection';
+import { useSearchParams } from 'react-router-dom';
 
 import Text from '../../components/atoms/Text';
 import Wrapper from '../../components/atoms/Wrapper';
@@ -39,12 +42,50 @@ const TitleVideosList = ({ num, title }) => {
 };
 
 const LecturePage = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [isComplete, setComplete] = useState(searchParams.get('complete'));
+  const videoSrc = searchParams.get('video');
+  const id = searchParams.get('courseId');
+  const order = searchParams.get('order');
+
+  const completeClick = async () => {
+    if (isComplete) return;
+
+    const token = localStorage.getItem('key');
+    if (!token) {
+      alert('로그인 안 함');
+      return;
+    }
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    const body = {
+      course_id: id,
+      order_in_course: order,
+    };
+    let url = BaseUrl + '/api/video-completion/';
+
+    try {
+      const res = await axios.post(url, body, config);
+      setComplete(true);
+    } catch (err) {
+      alert('API Error : ');
+    }
+  };
+
   return (
     <Wrapper>
       <FixedLogo type="dark" height="55px" />
       <LectureSection>
         <Space height="175px" />
-        <VideoSection />
+        <VideoSection
+          src={videoSrc}
+          controls
+          onClick={() => console.log('a')}
+        />
         <Space height="50px" />
         <LectureHeader>
           <Flex width="auto" align="start" gap="10px">
@@ -55,7 +96,13 @@ const LecturePage = () => {
             />
           </Flex>
           <PopButton colors={BlueButtonColors} width="200px" height="50px">
-            <Text size="20px" color={brand_white} children="학습 완료하기" />
+            <Text
+              size="20px"
+              color={brand_white}
+              children="학습 완료하기"
+              active={isComplete}
+              onClick={completeClick}
+            />
           </PopButton>
         </LectureHeader>
         <TitleVideosList num={1} title="첫 번째 강의" />
@@ -80,7 +127,7 @@ const LectureSection = styled.div`
   margin: 0 auto;
 `;
 
-const VideoSection = styled.div`
+const VideoSection = styled.video`
   width: 100%;
   height: 550px;
   background-color: #eee;

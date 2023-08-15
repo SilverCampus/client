@@ -4,7 +4,7 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import HomePage from './pages/Home/HomePage';
 import SearchPage from './pages/Search/SearchPage';
 import MainPage from './pages/Main/MainPage';
-import MyPage from './pages/MyPage/index';
+import MyPage from './pages/MyPage/MyPage';
 import CoursePage from './pages/Course/CoursePage';
 import MyFooter from './components/organisms/MyFooter';
 import QuestionPage from './pages/Question/QuestionPage';

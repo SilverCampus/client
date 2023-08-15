@@ -2,13 +2,27 @@ import React from 'react';
 import styled from 'styled-components';
 import Flex from '../atoms/Flex';
 
-const PopButton = ({ width, height, colors, className, children }) => {
+const PopButton = ({
+  width,
+  height,
+  colors,
+  children,
+  className,
+  active,
+  onClick,
+}) => {
+  console.log('active', active);
+  let activeClass = className;
+  activeClass += active ? ' isActive' : '';
+
   return (
     <PopButtonContainer
       width={width}
       height={height}
       colors={colors}
-      className={className}
+      className={activeClass}
+      active={active}
+      onClick={onClick}
     >
       <Flex direction="row" width="auto" height="auto" gap="8px">
         {children}
@@ -29,13 +43,14 @@ const PopButtonContainer = styled.button`
   box-shadow: 0px 0px 16px 0px rgba(163, 159, 159, 0.5);
   cursor: pointer;
 
-  &:active {
+  &.isActive {
     filter: brightness(110%);
     box-shadow: none;
     padding-bottom: 5px;
     padding-top: none;
     border-top: 5px solid transparent;
     border-bottom: none;
+    cursor: default;
   }
 `;
 

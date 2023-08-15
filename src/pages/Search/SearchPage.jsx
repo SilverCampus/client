@@ -23,15 +23,14 @@ const SearchPage = () => {
       return;
     }
 
-    console.log(token);
     const config = {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     };
 
+    let url = BaseUrl + '/api/get-recently-watched-courses/';
     try {
-      let url = BaseUrl + '/api/get-recently-watched-courses/';
       const res = await axios.get(url, config);
 
       setRecentlyWatched(res.data);
