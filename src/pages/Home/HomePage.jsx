@@ -24,6 +24,14 @@ const HomePage = () => {
           </Text>
         }
       />
+
+      <Modal state={isOpen} toggleModal={toggleModal} children={<SignForm />} />
+
+      <IntroSection />
+      <Wrapper linear="linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(170, 170, 170, 0.15) 100%)">
+        <DescriptionSection />
+        <UniqueSection />
+      </Wrapper>
       <FixButton
         width="250px"
         height="65px"
@@ -38,13 +46,6 @@ const HomePage = () => {
           children="지금 시작하기"
         />
       </FixButton>
-      <Modal state={isOpen} toggleModal={toggleModal} children={<SignForm />} />
-
-      <IntroSection />
-      <Wrapper linear="linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(170, 170, 170, 0.15) 100%)">
-        <DescriptionSection />
-        <UniqueSection />
-      </Wrapper>
     </HomePageContainer>
   );
 };
