@@ -118,7 +118,7 @@ const Course = () => {
           {videoData.map((it) => (
             <Curriculum
               key={it.id}
-              id={it.course}
+              courseId={it.course}
               order={it.order_in_course}
               children={it.title}
               isComplete={it.completed}

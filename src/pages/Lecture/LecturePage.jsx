@@ -43,10 +43,12 @@ const TitleVideosList = ({ num, title }) => {
 
 const LecturePage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [isComplete, setComplete] = useState(searchParams.get('complete'));
+  const [isComplete, setComplete] = useState(
+    searchParams.get('complete') === 'true' ? true : false
+  );
   const videoSrc = searchParams.get('video');
-  const id = searchParams.get('courseId');
-  const order = searchParams.get('order');
+  const id = Number(searchParams.get('courseId'));
+  const order = Number(searchParams.get('order'));
 
   const completeClick = async () => {
     if (isComplete) return;
@@ -72,7 +74,7 @@ const LecturePage = () => {
       const res = await axios.post(url, body, config);
       setComplete(true);
     } catch (err) {
-      alert('API Error : ');
+      console.log(err);
     }
   };
 
@@ -95,13 +97,17 @@ const LecturePage = () => {
               children="비전공자도 쉽게 배워 바로 써먹는 실무 활용 SQL"
             />
           </Flex>
-          <PopButton colors={BlueButtonColors} width="200px" height="50px">
+          <PopButton
+            colors={BlueButtonColors}
+            width="200px"
+            height="50px"
+            active={isComplete}
+            onClick={completeClick}
+          >
             <Text
               size="20px"
               color={brand_white}
-              children="학습 완료하기"
-              active={isComplete}
-              onClick={completeClick}
+              children={isComplete ? '학습 완료' : '학습 완료하기'}
             />
           </PopButton>
         </LectureHeader>

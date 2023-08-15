@@ -5,19 +5,14 @@ import defaultImg from '../../assets/images/default_image.jpeg';
 // Imported Components
 import Text from '../../components/atoms/Text';
 
-const CourseCard = ({
-  id,
-  img = defaultImg,
-  title = 'default',
-  description = 'default',
-}) => {
+const CourseCard = ({ data }) => {
   const nav = useNavigate(null);
 
   return (
-    <CourseCardContainer onClick={() => nav(`/course/${id}`)}>
-      <ThumbNail img={img} />
-      <Text>{title}</Text>
-      <Text>{description}</Text>
+    <CourseCardContainer onClick={() => nav(`/course/${data.id}`)}>
+      <ThumbNail img={data.thumbnail} />
+      <Text>{data.title}</Text>
+      <Text>{data.description}</Text>
     </CourseCardContainer>
   );
 };

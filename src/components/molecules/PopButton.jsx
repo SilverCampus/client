@@ -11,9 +11,7 @@ const PopButton = ({
   active,
   onClick,
 }) => {
-  console.log('active', active);
-  let activeClass = className;
-  activeClass += active ? ' isActive' : '';
+  let activeClass = className + (active ? ' isActive' : '');
 
   return (
     <PopButtonContainer
