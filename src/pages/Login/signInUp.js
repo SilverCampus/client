@@ -14,14 +14,11 @@ export const onRegister = async (signState, id, pw) => {
   try {
     const res = await axios.post(apiUrl, body);
 
-    if (res.status === 200) {
-      alert('회원 가입 성공!');
-      window.location.reload();
-    } else if (res.status === 400) {
-      alert('이미 존재하는 id');
-    }
+    alert('회원 가입 성공!');
+    window.location.reload();
   } catch (err) {
-    alert('onRegister - Api 실패');
+    if (err.response.status === 400) alert('이미 존재하는 id');
+    else alert('onRegister - Api 실패');
   }
 };
 
@@ -36,16 +33,13 @@ export const onLogin = async (id, pw) => {
   try {
     const res = await axios.post(apiUrl, body);
 
-    if (res.status === 200) {
-      localStorage.setItem('key', res.data.access);
+    localStorage.setItem('key', res.data.access);
 
-      alert('로그인 성공!');
-      return true;
-    } else if (res.status === 400) {
-      alert('계정 없음');
-    }
+    alert('로그인 성공!');
+    return true;
   } catch (err) {
-    alert('onLogin - Api 실패');
+    if (err.response && err.response.status === 400) alert('계정 없음');
+    else alert('onLogin - Api 실패');
   }
 
   return false;
