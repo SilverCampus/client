@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import BaseUrl from '../../App';
+import { BaseUrl } from '../../App';
 import axios from 'axios';
 
 import Wrapper from '../../components/atoms/Wrapper';
@@ -23,6 +23,7 @@ const SearchPage = () => {
       return;
     }
 
+    console.log(token);
     const config = {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -40,9 +41,9 @@ const SearchPage = () => {
     }
   };
 
-  // useEffect(() => {
-  //   getRecentlyWatched();
-  // }, []);
+  useEffect(() => {
+    getRecentlyWatched();
+  }, []);
 
   return (
     <SearchContainer>

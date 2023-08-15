@@ -5,7 +5,7 @@ import HomePage from './pages/Home/HomePage';
 import SearchPage from './pages/Search/SearchPage';
 import MainPage from './pages/Main/MainPage';
 import MyPage from './pages/MyPage/index';
-import Course from './pages/Course/index';
+import CoursePage from './pages/Course/CoursePage';
 import MyFooter from './components/organisms/MyFooter';
 import QuestionPage from './pages/Question/QuestionPage';
 import LecturePage from './pages/Lecture/LecturePage';
@@ -20,7 +20,7 @@ const Router = () => {
         <Route path="/search" element={<SearchPage />} />
         <Route path="/main" element={<MainPage />} />
         <Route path="/mypage" element={<MyPage />} />
-        <Route path="/course" element={<Course />} />
+        <Route path="/course/:id" element={<CoursePage />} />
         <Route path="/lecture" element={<LecturePage />} />
         <Route path="/question" element={<QuestionPage />} />
       </Routes>

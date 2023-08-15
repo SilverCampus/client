@@ -46,8 +46,8 @@ const QuestionPage = () => {
   return (
     <Wrapper>
       <FixedLogo type="dark" height="55px" />
+      <Space height="175px" />
       <QuestionSection>
-        <Space height="175px" />
         <Flex justify="left" direction="row" gap="10px">
           <Text
             color={brand_blue}

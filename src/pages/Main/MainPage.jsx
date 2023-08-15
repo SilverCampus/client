@@ -40,9 +40,9 @@ const MainPage = () => {
     return false;
   };
 
-  // useEffect(() => {
-  //   getApiData();
-  // }, []);
+  useEffect(() => {
+    getApiData();
+  }, []);
 
   return (
     // Wrapper 감싸기...
@@ -74,12 +74,7 @@ const MainPage = () => {
           ))}
         </Flex>
       )}
-      <Space height="100px" />
-      <Flex direction="row" gap="40px">
-        <CourseCard />
-        <CourseCard />
-        <CourseCard />
-      </Flex>
+
       <Space height="175px" />
     </Wrapper>
   );
