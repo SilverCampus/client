@@ -9,6 +9,7 @@ const Flex = ({
   align = 'center',
   gap = '0px',
   wrap = 'no-wrap',
+  className,
 }) => {
   return (
     <FlexDiv
@@ -19,6 +20,7 @@ const Flex = ({
       align={align}
       gap={gap}
       wrap={wrap}
+      className={className}
     >
       {children}
     </FlexDiv>

@@ -51,7 +51,7 @@ const PersonalBox = ({ type, data }) => {
       <PersonalBoxContainer type={type}>
         <ImgBox img={data.thumbnail} />
         <DescriptionBox>
-          <Text children={data.title} size="25px" weight="700" />
+          <Text children={data.title} size="25px" weight="700" align="center" />
           <Text children={data.description} />
         </DescriptionBox>
       </PersonalBoxContainer>
@@ -92,7 +92,8 @@ const PersonalBoxContainer = styled.div`
 const DescriptionBox = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  text-align: center;
+  gap: 20px;
   padding: 20px;
 `;
 

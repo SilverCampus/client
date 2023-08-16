@@ -23,18 +23,42 @@ const MainPage = () => {
   const [loading, setLoading] = useState(true);
 
   const getApiData = async () => {
+    const token = localStorage.getItem('key');
+    if (!token) {
+      alert('로그인 안 함');
+      return;
+    }
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
     let url = BaseUrl + `/api/search-courses/?keyword=${searched}`;
 
     try {
-      const res = await axios.get(url);
+      const res = await axios.get(url, config);
 
-      setData(res.data);
+      let newData = [];
+      let arr = [];
+
+      res.data.forEach((it, idx) => {
+        arr.push(it);
+        if ((idx + 1) % 3 === 0) {
+          newData.push([...arr]);
+          arr = [];
+        }
+      });
+
+      if (arr.length > 0) {
+        newData.push([...arr]);
+      }
+      setData(newData);
       setLoading(false);
     } catch (err) {
       if (err.response && err.response.status === 400) alert('검색 한 자 이상');
       else if (err.response && err.response.status === 404)
         alert('검색 결과 없음');
-      else alert('api error');
+      else console.log('getApiData Error', err);
     }
 
     return false;
@@ -44,36 +68,53 @@ const MainPage = () => {
     getApiData();
   }, []);
 
-  return (
-    // Wrapper 감싸기...
-    <Wrapper>
-      {/* <Navigation /> */}
-      <FixedLogo type="dark" height="55px" />
-      <Space height="175px" />
-      <Flex gap="10px" direction="row" width="auto" height="auto">
-        <Text weight={700} color={brand_blue} size="50px" children={searched} />
-        <Text
-          weight={700}
-          color={brand_black}
-          size="50px"
-          children="의 검색 결과"
-        />
-      </Flex>
-      <MyUnderline />
-      <Space height="100px" />
-      {loading ? (
-        '로딩중'
-      ) : (
-        <Flex direction="row" gap="40px">
-          {data.map((it) => (
-            <CourseCard key={it.id} data={it} />
-          ))}
+  if (loading) return '로딩중';
+  else
+    return (
+      <Wrapper>
+        {/* <Navigation /> */}
+        <FixedLogo type="dark" height="55px" />
+        <Space height="175px" />
+        <Flex gap="10px" direction="row" width="auto" height="auto">
+          <Text
+            weight={700}
+            color={brand_blue}
+            size="50px"
+            children={searched}
+          />
+          <Text
+            weight={700}
+            color={brand_black}
+            size="50px"
+            children="의 검색 결과"
+          />
         </Flex>
-      )}
-
-      <Space height="175px" />
-    </Wrapper>
-  );
+        <MyUnderline />
+        <Space height="100px" />
+        {data.map((it, idx) => (
+          <>
+            <StyledFlex
+              width="auto"
+              justify="left"
+              direction="row"
+              gap="40px"
+              key={idx}
+            >
+              {it.map((iter, idxx) => (
+                <CourseCard key={iter.id} data={iter} key={idxx} />
+              ))}
+            </StyledFlex>
+            <Space height="50px" />
+          </>
+        ))}
+        <Space height="125px" />
+      </Wrapper>
+    );
 };
+
+const StyledFlex = styled(Flex)`
+  width: 980px;
+  margin: 0 auto;
+`;
 
 export default MainPage;

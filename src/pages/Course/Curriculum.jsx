@@ -9,7 +9,7 @@ const Curriculum = ({ data }) => {
     <CurriculumContainer
       onClick={() =>
         nav(
-          `/lecture?video=${data.video_file}&complete=${data.completed}&courseId=${data.course}&order=${data.order_in_course}`
+          `/lecture?complete=${data.completed}&courseId=${data.course}&order=${data.order_in_course}`
         )
       }
     >

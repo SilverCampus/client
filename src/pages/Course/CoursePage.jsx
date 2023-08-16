@@ -5,6 +5,8 @@ import { useParams } from 'react-router-dom';
 import { brand_black } from '../../utils/palette';
 import { BlueButtonColors } from '../Search/TopicSection';
 import { BaseUrl } from '../../App';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
 import Wrapper from '../../components/atoms/Wrapper';
 import Space from '../../components/atoms/Space';
@@ -21,6 +23,8 @@ const CoursePage = () => {
   const { id } = useParams();
 
   const [courseData, setCourseData] = useState(null);
+  const [isInstructor, setIsIntructor] = useState(false);
+  const [isLiked, setIsLiked] = useState(false);
   const [loading1, setLoading1] = useState(true);
 
   const [videoData, setVideoData] = useState(null);
@@ -33,11 +37,23 @@ const CoursePage = () => {
   const [loading3, setLoading3] = useState(true);
 
   const getCourseData = async () => {
+    const token = localStorage.getItem('key');
+    if (!token) {
+      alert('로그인 안 함');
+      return;
+    }
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
     let url = BaseUrl + `/api/basic-cource-info/?course_id=${id}`;
 
     try {
-      const res = await axios.get(url);
+      const res = await axios.get(url, config);
       setCourseData(res.data);
+      setIsIntructor(res.data.is_this_instructor);
+      setIsLiked(res.data.is_liked);
       setLoading1(false);
     } catch (err) {
       console.log('getCourseDataError : ', err);
@@ -105,13 +121,11 @@ const CoursePage = () => {
 
   const handleBuyCourse = async () => {
     if (learnRate !== null) return;
-
     const token = localStorage.getItem('key');
     if (!token) {
       alert('로그인 안 함');
       return;
     }
-
     const config = {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -130,7 +144,29 @@ const CoursePage = () => {
     }
   };
 
-  // handleLikeCourse;
+  const handleLikeCourse = async () => {
+    const token = localStorage.getItem('key');
+    if (!token) {
+      alert('로그인 안 함');
+      return;
+    }
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    const body = {
+      course_id: id,
+    };
+    let url = BaseUrl + '/api/course-like/';
+
+    try {
+      const res = await axios.post(url, body, config);
+      setIsLiked(!isLiked);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <Wrapper>
@@ -146,8 +182,17 @@ const CoursePage = () => {
 
           <Flex direction="row" align="center">
             <Text children="강의자 | 김경수" />
-            <PopButton colors={BlueButtonColors} children={'하트'} />
             <PopButton
+              width="50px"
+              height="50px"
+              colors={BlueButtonColors}
+              children={<FontAwesomeIcon icon={faHeart} />}
+              active={isLiked}
+              onClick={handleLikeCourse}
+            />
+            <PopButton
+              width="200px"
+              height="100px"
               colors={BlueButtonColors}
               children={
                 learnRate !== null ? `강의률 ${learnRate}` : '강의 구매하기'

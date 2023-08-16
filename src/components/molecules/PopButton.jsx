@@ -46,11 +46,13 @@ const PopButtonContainer = styled.button`
   }
 
   &.isActive {
-    filter: brightness(110%);
-    box-shadow: none;
+    color: ${({ colors }) => colors.bgColor};
+    background-color: ${({ colors }) => colors.color};
+    box-shadow: 0px 0px 12px 0px rgba(163, 159, 159, 0.5) inset;
+
     padding-bottom: 5px;
     padding-top: none;
-    border-top: 5px solid transparent;
+    border-top: 5px solid #98b1b5;
     border-bottom: none;
     cursor: default;
   }

@@ -84,7 +84,7 @@ const QuestionPage = () => {
               color={brand_blue}
               size="25px"
               weight={500}
-              children={questionData.course}
+              children={questionData.course_name}
             />
           </Flex>
           <Space height="50px" />

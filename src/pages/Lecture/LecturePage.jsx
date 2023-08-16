@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import { BaseUrl } from '../../App';
@@ -13,42 +13,48 @@ import Space from '../../components/atoms/Space';
 import Flex from '../../components/atoms/Flex';
 import { FixedLogo } from '../Search/SearchSection';
 import PopButton from '../../components/molecules/PopButton';
-
-const OtherVideosList = ({ num, title }) => {
-  return (
-    <li>
-      <Flex direction="row" justify="left" width="auto" gap="10px">
-        <Text size="22px" weight={500} color="#a1a1a1" children={`${num}강.`} />
-        <Text size="22px" weight={500} color="#a1a1a1" children={title} />
-      </Flex>
-    </li>
-  );
-};
-
-const TitleVideosList = ({ num, title }) => {
-  return (
-    <TitleVideoDiv>
-      <Flex direction="row" justify="left" width="auto" gap="10px">
-        <Text
-          size="40px"
-          weight={700}
-          color={brand_black}
-          children={`${num}강.`}
-        />
-        <Text size="40px" weight={700} color={brand_black} children={title} />
-      </Flex>
-    </TitleVideoDiv>
-  );
-};
+import TitleVideosList from './TitleVideoList';
+import OtherVideosList from './OtherVideoList';
 
 const LecturePage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const id = Number(searchParams.get('courseId'));
+  const order = Number(searchParams.get('order'));
+
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
   const [isComplete, setComplete] = useState(
     searchParams.get('complete') === 'true' ? true : false
   );
-  const videoSrc = searchParams.get('video');
-  const id = Number(searchParams.get('courseId'));
-  const order = Number(searchParams.get('order'));
+
+  const getData = async () => {
+    const token = localStorage.getItem('key');
+    if (!token) {
+      alert('로그인 안 함');
+      return;
+    }
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    let url =
+      BaseUrl +
+      `/api/get-course-videos/?course_id=${id}&order_in_course=${order}`;
+
+    try {
+      const res = await axios.get(url, config);
+      setData(res.data);
+      setLoading(false);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   const completeClick = async () => {
     if (isComplete) return;
@@ -78,53 +84,51 @@ const LecturePage = () => {
     }
   };
 
-  return (
-    <Wrapper>
-      <FixedLogo type="dark" height="55px" />
-      <LectureSection>
-        <Space height="175px" />
-        <VideoSection
-          src={videoSrc}
-          controls
-          onClick={() => console.log('a')}
-        />
-        <Space height="50px" />
-        <LectureHeader>
-          <Flex width="auto" align="start" gap="10px">
-            <CategoryTag children="운동" />
-            <Text
-              size="20px"
-              children="비전공자도 쉽게 배워 바로 써먹는 실무 활용 SQL"
-            />
-          </Flex>
-          <PopButton
-            colors={BlueButtonColors}
-            width="200px"
-            height="50px"
-            active={isComplete}
-            onClick={completeClick}
-          >
-            <Text
-              size="20px"
-              color={brand_white}
-              children={isComplete ? '학습 완료' : '학습 완료하기'}
-            />
-          </PopButton>
-        </LectureHeader>
-        <TitleVideosList num={1} title="첫 번째 강의" />
-        <Space height="50px" />
+  if (loading) return '로딩 중';
+  else
+    return (
+      <Wrapper>
+        <FixedLogo type="dark" height="55px" />
+        <LectureSection>
+          <Space height="175px" />
+          <VideoSection src={data.video_file} controls />
+          <Space height="50px" />
+          <LectureHeader>
+            <Flex width="auto" align="start" gap="10px">
+              <CategoryTag children="운동" />
+              <Text
+                size="20px"
+                children="비전공자도 쉽게 배워 바로 써먹는 실무 활용 SQL"
+              />
+            </Flex>
+            <PopButton
+              colors={BlueButtonColors}
+              width="200px"
+              height="50px"
+              active={isComplete}
+              onClick={completeClick}
+            >
+              <Text
+                size="20px"
+                color={brand_white}
+                children={isComplete ? '학습 완료' : '학습 완료하기'}
+              />
+            </PopButton>
+          </LectureHeader>
+          <TitleVideosList num={1} title="첫 번째 강의" />
+          <Space height="50px" />
 
-        <VideoList>
+          <VideoList>
+            <OtherVideosList num={2} title="두 번째 강의" />
+            {/* <OtherVideosList num={2} title="두 번째 강의" />
           <OtherVideosList num={2} title="두 번째 강의" />
           <OtherVideosList num={2} title="두 번째 강의" />
-          <OtherVideosList num={2} title="두 번째 강의" />
-          <OtherVideosList num={2} title="두 번째 강의" />
-          <OtherVideosList num={2} title="두 번째 강의" />
-        </VideoList>
-      </LectureSection>
-      <Space height="175px" />
-    </Wrapper>
-  );
+          <OtherVideosList num={2} title="두 번째 강의" /> */}
+          </VideoList>
+        </LectureSection>
+        <Space height="175px" />
+      </Wrapper>
+    );
 };
 
 const LectureSection = styled.div`
@@ -138,13 +142,6 @@ const VideoSection = styled.video`
   height: 550px;
   background-color: #eee;
   border: 1px solid #dbdbdb;
-`;
-
-const TitleVideoDiv = styled.div`
-  width: 100%;
-  padding: 20px 30px;
-  border-left: 1px solid #dbdbdb;
-  border-right: 1px solid #dbdbdb;
 `;
 
 const LectureHeader = styled.div`
