@@ -6,10 +6,15 @@ import Heading from '../../components/molecules/Heading';
 import Heading2 from '../../components/molecules/Heading2';
 import MyUnderline from '../../components/atoms/MyUnderline';
 import Space from '../../components/atoms/Space';
-import PresonalBox from './PresonalBox';
+import PersonalBox from './PersonalBox';
 import Flex from '../../components/atoms/Flex';
 
-const PersonalSection = ({ recentlyWatched, loading1 }) => {
+const dummy = {
+  title: '기록이 없습니다',
+  description: '최초 등록해보세요!',
+};
+
+const PersonalSection = ({ recentData }) => {
   return (
     <div>
       <Space height="145px" />
@@ -27,18 +32,18 @@ const PersonalSection = ({ recentlyWatched, loading1 }) => {
       />
       <Space height="85px" />
       <Flex direction="row">
-        <PresonalBox
+        <PersonalBox
           type="left"
           heading="구매하신 강의"
           subHeading="가장 최근에 시청하신 강의입니다."
-          data={recentlyWatched}
-          loading={loading1}
+          data={recentData.recently_watched || dummy}
         />
-        {/* <PresonalBox
+        <PersonalBox
           type="right"
           heading="구매하신 강의"
           subHeading="가장 최근에 시청하신 강의입니다."
-        /> */}
+          data={recentData.recently_liked || dummy}
+        />
       </Flex>
       <Space height="210px" />
     </div>

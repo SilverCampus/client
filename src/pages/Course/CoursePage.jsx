@@ -15,8 +15,9 @@ import Flex from '../../components/atoms/Flex';
 import Text from '../../components/atoms/Text';
 import PopButton from '../../components/molecules/PopButton';
 import Curriculum from './Curriculum';
+import Question from './Question';
 
-const Course = () => {
+const CoursePage = () => {
   const { id } = useParams();
 
   const [courseData, setCourseData] = useState(null);
@@ -25,7 +26,10 @@ const Course = () => {
   const [videoData, setVideoData] = useState(null);
   const [loading2, setLoading2] = useState(true);
 
-  const [learnRate, setLearnRate] = useState(null);
+  const [questionData, setQuestionData] = useState(null);
+  const [loading4, setLoading4] = useState(true);
+
+  const [learnRate, setLearnRate] = useState(null); // LearnRate - null이면 수강안함
   const [loading3, setLoading3] = useState(true);
 
   const getCourseData = async () => {
@@ -36,7 +40,7 @@ const Course = () => {
       setCourseData(res.data);
       setLoading1(false);
     } catch (err) {
-      alert('API Error');
+      console.log('getCourseDataError : ', err);
     }
   };
 
@@ -48,7 +52,7 @@ const Course = () => {
       setVideoData(res.data);
       setLoading2(false);
     } catch (err) {
-      alert('API Error');
+      console.log('getVideDataError : ', err);
     }
   };
 
@@ -73,7 +77,20 @@ const Course = () => {
       setVideoData(res.data.videos);
       setLoading3(false);
     } catch (err) {
-      setLoading3(false);
+      console.log('getVideoData', err);
+      setLoading3(false); // Did Not Buy
+    }
+  };
+
+  const getQuestionData = async () => {
+    let url = BaseUrl + `/api/get-question-list/?course_id=${id}`;
+
+    try {
+      const res = await axios.get(url);
+      setQuestionData(res.data);
+      setLoading4(false);
+    } catch (err) {
+      console.log('getQuestionDataError : ', err);
     }
   };
 
@@ -81,9 +98,39 @@ const Course = () => {
     getCourseData();
     getVideoData();
     getBoughtData();
+    getQuestionData();
   }, []);
 
-  const loading = loading1 || loading2 || loading3;
+  const loading = loading1 || loading2 || loading3 || loading4;
+
+  const handleBuyCourse = async () => {
+    if (learnRate !== null) return;
+
+    const token = localStorage.getItem('key');
+    if (!token) {
+      alert('로그인 안 함');
+      return;
+    }
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    const body = {
+      course_id: id,
+    };
+    let url = BaseUrl + '/api/course-enroll/';
+
+    try {
+      const res = await axios.post(url, body, config);
+      setLearnRate(0);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  // handleLikeCourse;
 
   return (
     <Wrapper>
@@ -102,8 +149,11 @@ const Course = () => {
             <PopButton colors={BlueButtonColors} children={'하트'} />
             <PopButton
               colors={BlueButtonColors}
-              children={learnRate ? `강의률 ${learnRate}` : '강의 구매하기'}
-              active={learnRate}
+              children={
+                learnRate !== null ? `강의률 ${learnRate}` : '강의 구매하기'
+              }
+              active={learnRate !== null}
+              onClick={handleBuyCourse}
             />
           </Flex>
           <Space height="175px" />
@@ -116,20 +166,15 @@ const Course = () => {
           <Heading children="커리큘럼" />
           <MyUnderline />
           {videoData.map((it) => (
-            <Curriculum
-              key={it.id}
-              courseId={it.course}
-              order={it.order_in_course}
-              children={it.title}
-              isComplete={it.completed}
-              link={it.video_file}
-            />
+            <Curriculum key={it.id} data={it} />
           ))}
           <Space height="175px" />
 
           <Heading children={'QnA'} />
           <MyUnderline />
-          <QnADiv children={'4강 질문입니다'} />
+          {/* questionData && questionData.map((it) => <Question key={it.id} data={it} />) 이건 왜 안되지..*/}
+          {Array.isArray(questionData) &&
+            questionData.map((it) => <Question key={it.id} data={it} />)}
           <Space height="175px" />
         </CourseSection>
       )}
@@ -155,4 +200,4 @@ const QnADiv = styled.button`
   height: 50px;
 `;
 
-export default Course;
+export default CoursePage;

@@ -2,19 +2,19 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import Text from '../../components/atoms/Text';
 
-const Curriculum = ({ courseId, order, title, link, isComplete }) => {
+const Curriculum = ({ data }) => {
   const nav = useNavigate();
 
   return (
     <CurriculumContainer
       onClick={() =>
         nav(
-          `/lecture?video=${link}&complete=${isComplete}&courseId=${courseId}&order=${order}`
+          `/lecture?video=${data.video_file}&complete=${data.completed}&courseId=${data.course}&order=${data.order_in_course}`
         )
       }
     >
-      <Text children={`${order} 강`} />
-      <Text children={title} />
+      <Text children={`${data.order_in_course} 강`} />
+      <Text children={data.title} />
     </CurriculumContainer>
   );
 };

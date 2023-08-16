@@ -116,7 +116,7 @@ const MyPage = () => {
         </Flex>
         <Heading children="찜한 강의" />
         <MyUnderline />
-        <Space height="100px" /> */}
+        <Space height="100px" />
         <Flex direction="row" gap="40px">
           {likedData.map((it) => (
             <CourseCard key={it.id} data={it} />

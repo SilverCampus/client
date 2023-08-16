@@ -7,27 +7,17 @@ import defaultImg from '../../assets/images/default_image.jpeg';
 // Imported Components
 import Text from '../../components/atoms/Text';
 
-const PresonalBox = ({ type, heading, subHeading, data, loading }) => {
+const PersonalBox = ({ type, heading, subHeading, data }) => {
+  if (!data.thumbnail) data.thumbnail = defaultImg;
   return (
     <Container>
-      {loading ? (
-        '로딩중'
-      ) : (
-        <>
-          <Text children={heading} color={brand_black} size={20} weight={700} />
-          <Text
-            children={subHeading}
-            color={brand_black}
-            size={16}
-            weight={500}
-          />
-          <PersonalBoxContainer type={type}>
-            <ImgBox img={data.thumbnail} />
-            <Text children={data.title} />
-            <Text children={data.description} />
-          </PersonalBoxContainer>
-        </>
-      )}
+      <Text children={heading} color={brand_black} size={20} weight={700} />
+      <Text children={subHeading} color={brand_black} size={16} weight={500} />
+      <PersonalBoxContainer type={type}>
+        <ImgBox img={data.thumbnail} />
+        <Text children={data.title} />
+        <Text children={data.description} />
+      </PersonalBoxContainer>
     </Container>
   );
 };
@@ -54,4 +44,4 @@ const PersonalBoxContainer = styled.div`
   background-color: ${brand_white};
 `;
 
-export default PresonalBox;
+export default PersonalBox;

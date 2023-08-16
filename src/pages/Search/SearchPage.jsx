@@ -10,12 +10,10 @@ import PersonalSection from './PersonalSection';
 import Navigation from '../../components/organisms/Navigation';
 
 const SearchPage = () => {
-  const [recentlyWatched, setRecentlyWatched] = useState(null);
-  const [loading1, setLoading1] = useState(true);
-  const [recentlyLiked, setRecentlyLiked] = useState(null);
-  const [loading2, setLoading2] = useState(true);
+  const [recentData, setRecentData] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  const getRecentlyWatched = async () => {
+  const getRecentData = async () => {
     const token = localStorage.getItem('key');
 
     if (!token) {
@@ -29,34 +27,33 @@ const SearchPage = () => {
       },
     };
 
-    let url = BaseUrl + '/api/get-recently-watched-courses/';
+    let url = BaseUrl + '/api/get-user-courses/';
     try {
       const res = await axios.get(url, config);
 
-      setRecentlyWatched(res.data);
-      setLoading1(false);
+      setRecentData(res.data);
+      setLoading(false);
     } catch (err) {
       alert('API Error : ');
     }
   };
 
   useEffect(() => {
-    getRecentlyWatched();
+    getRecentData();
   }, []);
 
-  return (
-    <SearchContainer>
-      {/* <Navigation /> */}
-      <SearchSection />
-      <Wrapper linear="linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(170, 170, 170, 0.15) 100%)">
-        <TopicSection />
-        <PersonalSection
-          recentlyWatched={recentlyWatched}
-          loading1={loading1}
-        />
-      </Wrapper>
-    </SearchContainer>
-  );
+  if (loading) return '로딩중';
+  else
+    return (
+      <SearchContainer>
+        {/* <Navigation /> */}
+        <SearchSection />
+        <Wrapper linear="linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(170, 170, 170, 0.15) 100%)">
+          <TopicSection />
+          <PersonalSection recentData={recentData} />
+        </Wrapper>
+      </SearchContainer>
+    );
 };
 
 const SearchContainer = styled.div`

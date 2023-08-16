@@ -66,12 +66,7 @@ const MainPage = () => {
       ) : (
         <Flex direction="row" gap="40px">
           {data.map((it) => (
-            <CourseCard
-              key={it.id}
-              id={it.id}
-              title={it.title}
-              description={it.description}
-            />
+            <CourseCard key={it.id} data={it} />
           ))}
         </Flex>
       )}
