@@ -22,6 +22,8 @@ const QuestionPage = () => {
   const [questionData, setQuestionData] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  const [commentValue, setCommentValue] = useState('');
+
   const getQuestionData = async () => {
     let url = BaseUrl + `/api/get-question-detail/?question_id=${id}`;
 
@@ -37,6 +39,32 @@ const QuestionPage = () => {
   useEffect(() => {
     getQuestionData();
   }, []);
+
+  const handleAddComment = async () => {
+    const token = localStorage.getItem('key');
+    if (!token) {
+      alert('로그인 안 함');
+      return;
+    }
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    const body = {
+      question_id: id,
+      content: commentValue,
+    };
+    let url = BaseUrl + '/api/answer-question/';
+
+    try {
+      const res = await axios.post(url, body, config);
+      window.location.reload();
+    } catch (err) {
+      alert('강사아님');
+    }
+  };
 
   if (loading) return '로딩중';
   else
@@ -70,11 +98,16 @@ const QuestionPage = () => {
           <CustomHeading2 size="25px" children={questionData.content} />
           <CustomUnderline width="160px" color={brand_black} />
           <Flex align="end" gap="10px">
-            <AnswerInput placeholder="답변 입력"></AnswerInput>
+            <AnswerInput
+              placeholder="답변 입력"
+              value={commentValue}
+              onChange={(e) => setCommentValue(e.target.value)}
+            />
             <FlatButton
               bgColor={brand_blue}
               width="60px"
               height="40px"
+              onClick={handleAddComment}
               children={
                 <Text
                   weight={700}
