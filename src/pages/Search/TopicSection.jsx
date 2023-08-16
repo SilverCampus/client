@@ -5,6 +5,7 @@ import {
   brand_darkblue,
   brand_white,
 } from '../../utils/palette';
+import { useNavigate } from 'react-router-dom';
 
 // Imported Components
 import Heading from '../../components/molecules/Heading';
@@ -15,7 +16,7 @@ import GoDown from '../../components/molecules/GoDown';
 import PopButton from '../../components/molecules/PopButton';
 import Flex from '../../components/atoms/Flex';
 
-import { categoryList1, categoryList2 } from '../../utils/categoryList';
+import categoryList from '../../utils/categoryList';
 export const BlueButtonColors = {
   color: brand_white,
   bgColor: brand_blue,
@@ -23,9 +24,14 @@ export const BlueButtonColors = {
 };
 
 const TopicSection = () => {
+  const nav = useNavigate(null);
+  const handleClick = (topic) => {
+    nav(`/main?search=${topic}`);
+  };
+
   return (
     <div>
-      <Space height="145px" />
+      <Space height="190px" />
       <Heading
         color={brand_black}
         size="45px"
@@ -36,39 +42,39 @@ const TopicSection = () => {
       <Heading2
         color={brand_black}
         size="24px"
-        children="여러 주제를 고르실 수 있습니다"
+        children="각 주제에 해당하는 강의들을 확인하세요 ...q(≧▽≦q)"
       />
-      <Space height="85px" />
+      <Space height="140px" />
 
       <AlignCenter>
-        <Flex width="auto" gap="40px" direction="row" justify="left">
-          {categoryList1.map((it, idx) => (
-            <PopButton
+        {categoryList.map((it, idx) => (
+          <>
+            <Flex
               key={idx}
-              width="195px"
-              height="60px"
-              children={it}
-              colors={BlueButtonColors}
-            />
-          ))}
-        </Flex>
-        <Space height="70px" />
-        <Flex width="auto" gap="40px" direction="row" justify="left">
-          {categoryList2.map((it, idx) => (
-            <PopButton
-              key={idx}
-              width="195px"
-              height="60px"
-              children={it}
-              colors={BlueButtonColors}
-            />
-          ))}
-        </Flex>
+              width="auto"
+              gap="40px"
+              direction="row"
+              justify="left"
+            >
+              {it.map((iter, idx) => (
+                <PopButton
+                  key={idx}
+                  width="195px"
+                  height="60px"
+                  children={iter.icon}
+                  colors={BlueButtonColors}
+                  onClick={() => handleClick(iter.text)}
+                />
+              ))}
+            </Flex>
+            <Space height="70px" />
+          </>
+        ))}
       </AlignCenter>
 
-      <Space height="210px" />
+      <Space height="185px" />
       <GoDown color={brand_black} children="이미 찜한 강의가 있으신가요?" />
-      <Space height="30px" />
+      <Space height="25px" />
     </div>
   );
 };

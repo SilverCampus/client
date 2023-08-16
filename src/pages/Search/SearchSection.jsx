@@ -24,7 +24,7 @@ const SearchSection = () => {
       <MyUnderline color={brand_white} />
       <Space height="140px" />
       <SearchBox width="850px" />
-      <Space height="240px" />
+      <Space height="255px" />
       <GoDown color={brand_white} children="아직 결정 못하셨나요?" />
       <Space height="25px" />
     </Wrapper>

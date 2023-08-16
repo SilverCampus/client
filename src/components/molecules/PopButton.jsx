@@ -41,6 +41,10 @@ const PopButtonContainer = styled.button`
   box-shadow: 0px 0px 16px 0px rgba(163, 159, 159, 0.5);
   cursor: pointer;
 
+  &:hover {
+    filter: brightness(80%);
+  }
+
   &.isActive {
     filter: brightness(110%);
     box-shadow: none;

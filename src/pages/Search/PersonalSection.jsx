@@ -16,8 +16,8 @@ const dummy = {
 
 const PersonalSection = ({ recentData }) => {
   return (
-    <div>
-      <Space height="145px" />
+    <PersonalSectionContainer>
+      <Space height="190px" />
       <Heading
         color={brand_black}
         size="45px"
@@ -28,26 +28,20 @@ const PersonalSection = ({ recentData }) => {
       <Heading2
         color={brand_black}
         size="24px"
-        children="더 자세한 기록은 개인 페이지를 확인하세요."
+        children="자세한 사항은 개인 페이지를 확인하세요 ...(*￣０￣)ノ"
       />
-      <Space height="85px" />
-      <Flex direction="row">
-        <PersonalBox
-          type="left"
-          heading="구매하신 강의"
-          subHeading="가장 최근에 시청하신 강의입니다."
-          data={recentData.recently_watched || dummy}
-        />
-        <PersonalBox
-          type="right"
-          heading="구매하신 강의"
-          subHeading="가장 최근에 시청하신 강의입니다."
-          data={recentData.recently_liked || dummy}
-        />
+      <Space height="140px" />
+      <Flex direction="row" justify="space-evenly">
+        <PersonalBox type="left" data={recentData.recently_watched || dummy} />
+        <PersonalBox type="right" data={recentData.recently_liked || dummy} />
       </Flex>
-      <Space height="210px" />
-    </div>
+      <Space height="260px" />
+    </PersonalSectionContainer>
   );
 };
+
+const PersonalSectionContainer = styled.div`
+  width: 100%;
+`;
 
 export default PersonalSection;

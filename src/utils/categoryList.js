@@ -22,32 +22,65 @@ const Icon = ({ children }) => {
   );
 };
 
-export const categoryList1 = [
-  <Icon>
-    {faHeart}
-    건강
-  </Icon>,
-  <Icon>
-    {faDumbbell}
-    운동
-  </Icon>,
-  <Icon>
-    {faPiggyBank}
-    재테크
-  </Icon>,
-  <Icon>
-    {faBrush}
-    예술
-  </Icon>,
+const categoryList = [
+  [
+    {
+      icon: (
+        <Icon>
+          {faHeart}
+          건강
+        </Icon>
+      ),
+      text: '건강',
+    },
+    {
+      icon: (
+        <Icon>
+          {faDumbbell}
+          운동
+        </Icon>
+      ),
+      text: '운동',
+    },
+    {
+      icon: (
+        <Icon>
+          {faPiggyBank}
+          재테크
+        </Icon>
+      ),
+      text: '재테크',
+    },
+    {
+      icon: (
+        <Icon>
+          {faBrush}
+          예술
+        </Icon>
+      ),
+      text: '예술',
+    },
+  ],
+  [
+    {
+      icon: (
+        <Icon>
+          {faScaleBalanced}
+          정치
+        </Icon>
+      ),
+      text: '정치',
+    },
+    {
+      icon: (
+        <Icon>
+          {faBookBookmark}
+          문화
+        </Icon>
+      ),
+      text: '문화',
+    },
+  ],
 ];
 
-export const categoryList2 = [
-  <Icon>
-    {faScaleBalanced}
-    법·정치
-  </Icon>,
-  <Icon>
-    {faBookBookmark}
-    문화
-  </Icon>,
-];
+export default categoryList;
