@@ -110,7 +110,6 @@ const LecturePage = () => {
             >
               <Text
                 size="20px"
-                color={brand_white}
                 children={isComplete ? '학습 완료' : '학습 완료하기'}
               />
             </PopButton>

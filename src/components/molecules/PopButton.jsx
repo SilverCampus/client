@@ -22,9 +22,13 @@ const PopButton = ({
       active={active}
       onClick={onClick}
     >
-      <Flex direction="row" width="auto" height="auto" gap="8px">
-        {children}
-      </Flex>
+      <Flex
+        direction="row"
+        width="auto"
+        height="auto"
+        gap="8px"
+        children={children}
+      />
     </PopButtonContainer>
   );
 };

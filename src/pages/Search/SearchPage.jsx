@@ -2,12 +2,14 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { BaseUrl } from '../../App';
 import axios from 'axios';
+import { Element } from 'react-scroll';
 
 import Wrapper from '../../components/atoms/Wrapper';
 import SearchSection from './SearchSection';
 import TopicSection from './TopicSection';
 import PersonalSection from './PersonalSection';
 import Navigation from '../../components/organisms/Navigation';
+import Speaker from '../../components/organisms/Speaker';
 
 const SearchPage = () => {
   const [recentData, setRecentData] = useState(null);
@@ -45,19 +47,29 @@ const SearchPage = () => {
   if (loading) return '로딩중';
   else
     return (
-      <SearchContainer>
-        {/* <Navigation /> */}
-        <SearchSection />
+      <div>
+        <Element
+          name="section1"
+          className="element"
+          children={<SearchSection />}
+        />
+
         <Wrapper linear="linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(170, 170, 170, 0.15) 100%)">
-          <TopicSection />
-          <PersonalSection recentData={recentData} />
+          <Element
+            name="section2"
+            className="element"
+            children={<TopicSection />}
+          />
+          <Element
+            name="section3"
+            className="element"
+            children={<PersonalSection recentData={recentData} />}
+          />
         </Wrapper>
-      </SearchContainer>
+        <Navigation />
+        <Speaker />
+      </div>
     );
 };
-
-const SearchContainer = styled.div`
-  position: relative;
-`;
 
 export default SearchPage;
