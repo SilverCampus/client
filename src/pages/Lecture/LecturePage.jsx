@@ -14,11 +14,16 @@ import { FixedLogo } from '../Search/SearchSection';
 import PopButton from '../../components/molecules/PopButton';
 import TitleVideosList from './TitleVideoList';
 import OtherVideosList from './OtherVideoList';
+import LoadingPage from '../../components/templates/LoadingPage';
+import Tag from '../../components/molecules/Tag';
 
 const LecturePage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const id = Number(searchParams.get('courseId'));
   const order = Number(searchParams.get('order'));
+  const title = searchParams.get('courseName');
+  const category = searchParams.get('category');
+  const credit = searchParams.get('credit');
 
   const [currentVideo, setCurrentVideo] = useState(null);
   const [restVideo, setRestVideo] = useState(null);
@@ -85,7 +90,7 @@ const LecturePage = () => {
     }
   };
 
-  if (loading) return '로딩 중';
+  if (loading) return <LoadingPage />;
   else
     return (
       <Wrapper>
@@ -96,11 +101,11 @@ const LecturePage = () => {
           <Space height="50px" />
           <LectureHeader>
             <Flex width="auto" align="start" gap="10px">
-              <CategoryTag children="운동" />
-              <Text
-                size="20px"
-                children="비전공자도 쉽게 배워 바로 써먹는 실무 활용 SQL"
-              />
+              <Flex direction="row" width="auto" gap="13px">
+                <Tag type={category} />
+                <Tag type={`학점${credit}`} text={`${credit}학점`} />
+              </Flex>
+              <Text size="20px" children={title} />
             </Flex>
             <PopButton
               colors={BlueButtonColors}
@@ -108,19 +113,29 @@ const LecturePage = () => {
               height="50px"
               active={isComplete}
               onClick={completeClick}
-            >
-              <Text
-                size="20px"
-                children={isComplete ? '학습 완료' : '학습 완료하기'}
-              />
-            </PopButton>
+              children={
+                <Text
+                  size="20px"
+                  children={isComplete ? '학습 완료' : '학습 완료하기'}
+                />
+              }
+            />
           </LectureHeader>
-          <TitleVideosList num={1} title="첫 번째 강의" />
+          <TitleVideosList
+            num={currentVideo.order_in_course}
+            title={currentVideo.title}
+          />
           <Space height="50px" />
 
           <VideoList>
             {restVideo.map((it, idx) => (
-              <OtherVideosList key={idx} data={it} />
+              <OtherVideosList
+                key={idx}
+                data={it}
+                courseName={title}
+                category={category}
+                credit={credit}
+              />
             ))}
           </VideoList>
         </LectureSection>
@@ -164,21 +179,6 @@ const VideoList = styled.ul`
   padding: 20px 30px;
   border-left: 1px solid #dbdbdb;
   border-right: 1px solid #dbdbdb;
-`;
-
-const CategoryTag = styled.div`
-  display: flex;
-  width: 72px;
-  height: 28px;
-  padding: 4px 10px;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  border-radius: 16px;
-  background: #1fc589;
-  color: white;
-  font-size: 14px;
-  font-weight: 500;
 `;
 
 export default LecturePage;

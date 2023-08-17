@@ -8,14 +8,14 @@ import Tag from '../../components/molecules/Tag';
 import { brand_black, brand_white } from '../../utils/palette';
 import Flex from '../../components/atoms/Flex';
 
-const Curriculum = ({ data }) => {
+const Curriculum = ({ data, category, credit, courseName }) => {
   const nav = useNavigate();
 
   return (
     <CurriculumContainer
       onClick={() =>
         nav(
-          `/lecture?complete=${data.completed}&courseId=${data.course}&order=${data.order_in_course}`
+          `/lecture?courseName=${courseName}&category=${category}&credit=${credit}&complete=${data.completed}&courseId=${data.course}&order=${data.order_in_course}`
         )
       }
     >

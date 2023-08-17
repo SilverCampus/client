@@ -233,7 +233,6 @@ const CoursePage = () => {
             </Flex>
           </Flex>
           <Space height="175px" />
-
           <Element
             name="section1"
             className="element"
@@ -254,11 +253,13 @@ const CoursePage = () => {
                 videoData={videoData}
                 isInstructor={isInstructor}
                 courseId={courseData.id}
+                courseName={courseData.title}
+                category={courseData.category_name}
+                credit={courseData.credits}
               />
             }
           />
           <Space height="175px" />
-
           <Element
             name="section3"
             className="element"
@@ -266,6 +267,7 @@ const CoursePage = () => {
               <QuestionSection
                 questionData={questionData}
                 learnRate={learnRate}
+                courseId={courseData.id}
               />
             }
           />

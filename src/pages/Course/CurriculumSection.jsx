@@ -14,7 +14,14 @@ import { RightButton } from './DescriptionSection';
 import CurriculumForm from './CurriculumForm';
 import Flex from '../../components/atoms/Flex';
 
-const CurriculumSection = ({ videoData, courseId, isInstructor }) => {
+const CurriculumSection = ({
+  videoData,
+  courseId,
+  isInstructor,
+  courseName,
+  category,
+  credit,
+}) => {
   const [isOpen, toggleModal] = useModal();
 
   return (
@@ -34,7 +41,13 @@ const CurriculumSection = ({ videoData, courseId, isInstructor }) => {
       <Space height="50px" />
       <Flex gap="20px">
         {videoData.map((it) => (
-          <Curriculum key={it.id} data={it} />
+          <Curriculum
+            key={it.id}
+            data={it}
+            courseName={courseName}
+            category={category}
+            credit={credit}
+          />
         ))}
       </Flex>
       <Modal

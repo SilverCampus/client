@@ -13,11 +13,11 @@ import Text from '../../components/atoms/Text';
 
 // Imported Functions
 
-const CurriculumForm = ({ toggleModal, courseId }) => {
+const QuestionForm = ({ toggleModal, courseId }) => {
   const [title, setTitle] = useState('');
-  const [video, setVideo] = useState(null);
+  const [description, setDescription] = useState('');
 
-  const addVideo = async () => {
+  const addQuestion = async () => {
     const token = localStorage.getItem('key');
     if (!token) {
       alert('로그인 안 함');
@@ -26,18 +26,17 @@ const CurriculumForm = ({ toggleModal, courseId }) => {
     const config = {
       headers: {
         Authorization: `Bearer ${token}`,
-        'Content-Type': 'multipart/form-data',
       },
     };
-
-    const formData = new FormData();
-    formData.append('title', title);
-    formData.append('video_file', video);
-    formData.append('course_id', courseId);
-    let url = BaseUrl + '/api/video-upload/';
+    const body = {
+      title: title,
+      content: description,
+      course_id: courseId,
+    };
+    let url = BaseUrl + '/api/ask-question/';
 
     try {
-      const res = await axios.post(url, formData, config);
+      const res = await axios.post(url, body, config);
       toggleModal();
       window.location.reload();
     } catch (err) {
@@ -47,13 +46,13 @@ const CurriculumForm = ({ toggleModal, courseId }) => {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    addVideo();
+    addQuestion();
   };
 
   return (
     <FormWrapper>
       <FormContainer onSubmit={onSubmitHandler}>
-        <Heading size="40px" children="강의 추가" />
+        <Heading size="40px" children="질문 등록" />
         <MyUnderline />
         <Space height="50px" />
         <Title
@@ -63,20 +62,17 @@ const CurriculumForm = ({ toggleModal, courseId }) => {
           onChange={(e) => setTitle(e.target.value)}
         />
         <Space height="50px" />
-        <Video>
-          <input
-            type="file"
-            accept="video/*"
-            onChange={(e) => setVideo(e.target.files[0])}
-          />
-        </Video>
+        <Area
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        />
         <Space height="50px" />
         <FlatButton width="100%" height="50px" bgColor={brand_blue}>
           <Text
             color={brand_white}
             size="20px"
             weight={700}
-            children="추가하기"
+            children="등록하기"
           />
         </FlatButton>
       </FormContainer>
@@ -94,6 +90,20 @@ const FormWrapper = styled.div`
 
 const FormContainer = styled.form``;
 
+const Area = styled.textarea`
+  width: 500px;
+  height: 300px;
+
+  padding: 15px;
+  border-radius: 12px;
+  border: 1px solid #b0b0b0;
+  resize: none;
+
+  &:focus {
+    outline: none;
+  }
+`;
+
 const Title = styled.input`
   width: 500px;
   height: 50px;
@@ -108,8 +118,4 @@ const Title = styled.input`
   }
 `;
 
-const Video = styled.div`
-  text-align: center;
-`;
-
-export default CurriculumForm;
+export default QuestionForm;
