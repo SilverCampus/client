@@ -11,6 +11,8 @@ import QuestionPage from './pages/Question/QuestionPage';
 import LecturePage from './pages/Lecture/LecturePage';
 import Navigation from './components/organisms/Navigation';
 import Speaker from './components/organisms/Speaker';
+import SocialPage from './pages/Social/SocialPage';
+import Details from './pages/Social/Details';
 
 const Router = () => {
   const path = useLocation();
@@ -25,6 +27,7 @@ const Router = () => {
         <Route path="/course/:id" element={<CoursePage />} />
         <Route path="/lecture" element={<LecturePage />} />
         <Route path="/question/:id" element={<QuestionPage />} />
+        <Route path="/social" element={<SocialPage />} />
       </Routes>
       <MyFooter />
       {path.pathname === '/' ? null : <Navigation />}

@@ -1,6 +1,8 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 const Wrapper = ({ img, bgColor, children, linear, className }) => {
+  className += img ? ' move' : '';
+
   return (
     <StyledWrapper
       img={img}
@@ -13,6 +15,14 @@ const Wrapper = ({ img, bgColor, children, linear, className }) => {
   );
 };
 
+const BackgroundAnimation = keyframes`
+from {
+  background-position: 0 center;
+}
+to {
+  background-position: 3840px center;
+}`;
+
 const StyledWrapper = styled.div`
   width: 100%;
   height: auto;
@@ -22,6 +32,10 @@ const StyledWrapper = styled.div`
   background: ${({ linear }) => linear};
   background-position: center;
   background-size: cover;
+
+  &.move {
+    animation: ${BackgroundAnimation} 100s linear infinite;
+  }
 `;
 
 const StyledContainer = styled.div`

@@ -2,10 +2,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faHeart,
   faDumbbell,
-  faPiggyBank,
+  faMusic,
   faBrush,
+  faPeopleGroup,
   faScaleBalanced,
   faBookBookmark,
+  faEarthAmerica,
 } from '@fortawesome/free-solid-svg-icons';
 import Flex from '../components/atoms/Flex';
 import Text from '../components/atoms/Text';
@@ -45,40 +47,53 @@ const categoryList = [
     {
       icon: (
         <Icon>
-          {faPiggyBank}
-          재테크
+          {faMusic}
+          음악
         </Icon>
       ),
-      text: '재테크',
+      text: '음악',
     },
     {
       icon: (
         <Icon>
           {faBrush}
-          예술
+          미술
         </Icon>
       ),
-      text: '예술',
+      text: '미술',
     },
   ],
   [
     {
       icon: (
         <Icon>
-          {faScaleBalanced}
-          정치
+          {faPeopleGroup}
+          사회
         </Icon>
       ),
-      text: '정치',
+      text: '사회',
+    },
+    {
+      icon: <Icon>{faScaleBalanced}법</Icon>,
+      text: '법',
     },
     {
       icon: (
         <Icon>
           {faBookBookmark}
-          문화
+          인문
         </Icon>
       ),
-      text: '문화',
+      text: '인문',
+    },
+    {
+      icon: (
+        <Icon>
+          {faEarthAmerica}
+          외국어
+        </Icon>
+      ),
+      text: '외국어',
     },
   ],
 ];

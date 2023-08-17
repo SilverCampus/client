@@ -26,6 +26,19 @@ const GoDownContainer = styled.div`
   margin: 0 auto;
   width: fit-content;
   height: auto;
+
+  animation: bounce 3s infinite ease-in-out;
+
+  @keyframes bounce {
+    0%,
+    100% {
+      transform: translateY(0); /* 높이를 변화시키지 않음 */
+    }
+
+    50% {
+      transform: translateY(-20px); /* 위로 튀기는 효과 */
+    }
+  }
 `;
 
 export default GoDown;

@@ -72,7 +72,6 @@ const MainPage = () => {
   else
     return (
       <Wrapper>
-        {/* <Navigation /> */}
         <FixedLogo type="dark" height="55px" />
         <Space height="175px" />
         <Flex gap="10px" direction="row" width="auto" height="auto">

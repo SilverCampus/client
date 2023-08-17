@@ -23,22 +23,22 @@ const OuterModal = styled.div`
   /* state false 시 */
   display: none;
 
-  /* 스크롤에 상관없이 화면 가득 채움 */
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-
-  /* 배경 반투명 */
-  background-color: rgba(0, 0, 0, 0.6);
-
-  /* 최상단으로 가져오기 */
-  z-index: 999;
-
   &.openOuter {
     display: block;
     animation: open-Outer 0.3s;
+
+    /* 스크롤에 상관없이 화면 가득 채움 */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+
+    /* 배경 반투명 */
+    background-color: rgba(0, 0, 0, 0.6);
+
+    /* 최상단으로 가져오기 */
+    z-index: 999;
   }
 
   @keyframes open-Outer {
@@ -54,23 +54,24 @@ const OuterModal = styled.div`
 const InnerModal = styled.div`
   /* state false 시 */
   display: none;
-  position: absolute;
-
-  /* child componenet 크기에 맞춤 */
-  width: fit-content;
-  height: fit-content;
-
-  /* 가운데 정렬 */
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  /* 최상단으로 가져오기 */
-  z-index: 999;
 
   &.openInner {
     display: block;
     animation: open-Inner 0.7s;
+
+    position: absolute;
+
+    /* child componenet 크기에 맞춤 */
+    width: fit-content;
+    height: fit-content;
+
+    /* 가운데 정렬 */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    /* 최상단으로 가져오기 */
+    z-index: 999;
   }
 
   @keyframes open-Inner {

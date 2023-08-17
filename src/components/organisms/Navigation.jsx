@@ -67,7 +67,7 @@ const Navigation = () => {
             children={<StyledButton icon={faDiceOne} />}
           />
           <Space height="30px" />
-          <StyledButton onClick={() => nav('/')} icon={faUsers} />
+          <StyledButton onClick={() => nav('/social')} icon={faUsers} />
           <StyledButton onClick={() => nav('/mypage')} icon={faUser} />
           <StyledButton
             onClick={() => nav('/search')}
