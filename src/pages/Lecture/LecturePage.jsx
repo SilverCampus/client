@@ -21,7 +21,8 @@ const LecturePage = () => {
   const id = Number(searchParams.get('courseId'));
   const order = Number(searchParams.get('order'));
 
-  const [data, setData] = useState(null);
+  const [currentVideo, setCurrentVideo] = useState(null);
+  const [restVideo, setRestVideo] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const [isComplete, setComplete] = useState(
@@ -45,7 +46,8 @@ const LecturePage = () => {
 
     try {
       const res = await axios.get(url, config);
-      setData(res.data);
+      setCurrentVideo(res.data.current_video);
+      setRestVideo(res.data.else_videos);
       setLoading(false);
     } catch (err) {
       console.log(err);
@@ -91,7 +93,7 @@ const LecturePage = () => {
         <FixedLogo type="dark" height="55px" />
         <LectureSection>
           <Space height="175px" />
-          <VideoSection src={data.video_file} controls />
+          <VideoSection src={currentVideo.video_file} controls />
           <Space height="50px" />
           <LectureHeader>
             <Flex width="auto" align="start" gap="10px">
@@ -118,11 +120,9 @@ const LecturePage = () => {
           <Space height="50px" />
 
           <VideoList>
-            <OtherVideosList num={2} title="두 번째 강의" />
-            {/* <OtherVideosList num={2} title="두 번째 강의" />
-          <OtherVideosList num={2} title="두 번째 강의" />
-          <OtherVideosList num={2} title="두 번째 강의" />
-          <OtherVideosList num={2} title="두 번째 강의" /> */}
+            {restVideo.map((it, idx) => (
+              <OtherVideosList key={idx} data={it} />
+            ))}
           </VideoList>
         </LectureSection>
         <Space height="175px" />

@@ -19,6 +19,6 @@ export const onRegister = async (signState, id, pw) => {
     window.location.reload();
   } catch (err) {
     if (err.response.status === 400) alert('이미 존재하는 id');
-    else alert('onRegister - Api 실패');
+    else console.log('onRegister - Api 실패', err);
   }
 };

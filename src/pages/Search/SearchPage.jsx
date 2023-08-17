@@ -10,6 +10,7 @@ import TopicSection from './TopicSection';
 import PersonalSection from './PersonalSection';
 import Navigation from '../../components/organisms/Navigation';
 import Speaker from '../../components/organisms/Speaker';
+import LoadingPage from '../../components/templates/LoadingPage';
 
 const SearchPage = () => {
   const [recentData, setRecentData] = useState(null);
@@ -44,7 +45,7 @@ const SearchPage = () => {
     getRecentData();
   }, []);
 
-  if (loading) return '로딩중';
+  if (loading) return <LoadingPage />;
   else
     return (
       <div>

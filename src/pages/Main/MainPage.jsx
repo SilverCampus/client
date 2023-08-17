@@ -14,6 +14,8 @@ import Space from '../../components/atoms/Space';
 import Text from '../../components/atoms/Text';
 import MyUnderline from '../../components/atoms/MyUnderline';
 import CourseCard from './CourseCard';
+import Speaker from '../../components/organisms/Speaker';
+import LoadingPage from '../../components/templates/LoadingPage';
 
 const MainPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -68,7 +70,7 @@ const MainPage = () => {
     getApiData();
   }, []);
 
-  if (loading) return '로딩중';
+  if (loading) return <LoadingPage />;
   else
     return (
       <Wrapper>
@@ -108,6 +110,8 @@ const MainPage = () => {
           </>
         ))}
         <Space height="125px" />
+        <Navigation />
+        <Speaker />
       </Wrapper>
     );
 };

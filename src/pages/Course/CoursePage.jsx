@@ -18,6 +18,9 @@ import Text from '../../components/atoms/Text';
 import PopButton from '../../components/molecules/PopButton';
 import Curriculum from './Curriculum';
 import Question from './Question';
+import LoadingPage from '../../components/templates/LoadingPage';
+import Navigation from '../../components/organisms/Navigation';
+import Speaker from '../../components/organisms/Speaker';
 
 const CoursePage = () => {
   const { id } = useParams();
@@ -168,12 +171,12 @@ const CoursePage = () => {
     }
   };
 
-  return (
-    <Wrapper>
-      <FixedLogo type="dark" height="55px" />
-      {loading ? (
-        '로딩중'
-      ) : (
+  if (loading) return <LoadingPage />;
+  else
+    return (
+      <Wrapper>
+        <FixedLogo type="dark" height="55px" />
+
         <CourseSection>
           <Space height="175px" />
           <Heading children={courseData.title} />
@@ -222,9 +225,10 @@ const CoursePage = () => {
             questionData.map((it) => <Question key={it.id} data={it} />)}
           <Space height="175px" />
         </CourseSection>
-      )}
-    </Wrapper>
-  );
+        <Navigation />
+        <Speaker />
+      </Wrapper>
+    );
 };
 
 const CourseSection = styled.div`

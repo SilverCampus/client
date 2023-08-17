@@ -56,9 +56,9 @@ const TopicSection = () => {
               direction="row"
               justify="left"
             >
-              {it.map((iter, idx) => (
+              {it.map((iter, idxx) => (
                 <PopButton
-                  key={idx}
+                  key={idxx}
                   width="195px"
                   height="60px"
                   children={iter.icon}
