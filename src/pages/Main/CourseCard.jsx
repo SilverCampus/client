@@ -60,14 +60,16 @@ const CourseCard = ({ data }) => {
           <Text children={data.instructor} size="18px" align="right" />
         </Details>
       </div>
-      <FixButton
-        width="50px"
-        height="50px"
-        colors={PurpleButtonColors}
-        children={<FontAwesomeIcon icon={faHeart} />}
-        active={isLiked}
-        onClick={handleLikeCourse}
-      />
+      {isLiked !== undefined ? (
+        <FixButton
+          width="50px"
+          height="50px"
+          colors={PurpleButtonColors}
+          children={<FontAwesomeIcon icon={faHeart} />}
+          active={isLiked}
+          onClick={handleLikeCourse}
+        />
+      ) : null}
     </CourseCardContainer>
   );
 };
