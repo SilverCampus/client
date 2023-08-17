@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Flex from '../atoms/Flex';
 
 const FlatButton = ({
   width,
@@ -16,7 +17,9 @@ const FlatButton = ({
       className={className}
       onClick={onClick}
     >
-      {children}
+      <Flex justify="center" align="center">
+        {children}
+      </Flex>
     </StyledFlatButton>
   );
 };

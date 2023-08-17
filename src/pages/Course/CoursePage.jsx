@@ -2,11 +2,15 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { brand_black } from '../../utils/palette';
-import { BlueButtonColors } from '../Search/TopicSection';
+import {
+  brand_black,
+  BlueButtonColors,
+  PurpleButtonColors,
+} from '../../utils/palette';
 import { BaseUrl } from '../../App';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { Element } from 'react-scroll';
 
 import Wrapper from '../../components/atoms/Wrapper';
 import Space from '../../components/atoms/Space';
@@ -16,11 +20,11 @@ import MyUnderline from '../../components/atoms/MyUnderline';
 import Flex from '../../components/atoms/Flex';
 import Text from '../../components/atoms/Text';
 import PopButton from '../../components/molecules/PopButton';
-import Curriculum from './Curriculum';
-import Question from './Question';
 import LoadingPage from '../../components/templates/LoadingPage';
-import Navigation from '../../components/organisms/Navigation';
-import Speaker from '../../components/organisms/Speaker';
+import Tag from '../../components/molecules/Tag';
+import DescriptionSection from './DescriptionSection';
+import CurriculumSection from './CurriculumSection';
+import QuestionSection from './QuestionSection';
 
 const CoursePage = () => {
   const { id } = useParams();
@@ -179,54 +183,94 @@ const CoursePage = () => {
 
         <CourseSection>
           <Space height="175px" />
-          <Heading children={courseData.title} />
+          <Heading size="62px" weight={700} children={courseData.title} />
           <MyUnderline />
+          <Space height="50px" />
           <Thumbnail src={courseData.thumbnail} />
-
-          <Flex direction="row" align="center">
-            <Text children="강의자 | 김경수" />
-            <PopButton
-              width="50px"
-              height="50px"
-              colors={BlueButtonColors}
-              children={<FontAwesomeIcon icon={faHeart} />}
-              active={isLiked}
-              onClick={handleLikeCourse}
-            />
-            <PopButton
-              width="200px"
-              height="100px"
-              colors={BlueButtonColors}
-              children={
-                learnRate !== null ? `강의률 ${learnRate}` : '강의 구매하기'
-              }
-              active={learnRate !== null}
-              onClick={handleBuyCourse}
-            />
+          <Space height="50px" />
+          <Flex direction="row" align="center" justify="space-between">
+            <Flex width="auto" align="start" gap="10px">
+              <Flex direction="row" width="auto" gap="13px">
+                <Tag type={courseData.category_name} />
+                <Tag
+                  type={`학점${courseData.credits}`}
+                  text={`${courseData.credits}학점`}
+                />
+              </Flex>
+              <Text
+                size="40px"
+                weight={700}
+                children={`강의자 | ${courseData.instructor}`}
+              />
+            </Flex>
+            <Flex direction="row" width="auto" align="center" gap="20px">
+              <PopButton
+                width="85px"
+                height="85px"
+                colors={PurpleButtonColors}
+                children={<FontAwesomeIcon icon={faHeart} className="fa-2x" />}
+                active={isLiked}
+                onClick={handleLikeCourse}
+              />
+              <PopButton
+                width="275px"
+                height="85px"
+                colors={BlueButtonColors}
+                children={
+                  <Text
+                    size="35px"
+                    weight={700}
+                    children={
+                      learnRate !== null
+                        ? `강의진행률 ${learnRate}%`
+                        : '강의 구매하기'
+                    }
+                  />
+                }
+                active={learnRate !== null}
+                onClick={handleBuyCourse}
+              />
+            </Flex>
           </Flex>
           <Space height="175px" />
 
-          <Heading children="강의 소개" />
-          <MyUnderline />
-          <Text children={courseData.description} />
+          <Element
+            name="section1"
+            className="element"
+            children={
+              <DescriptionSection
+                courseData={courseData}
+                isInstructor={isInstructor}
+              />
+            }
+          />
           <Space height="175px" />
 
-          <Heading children="커리큘럼" />
-          <MyUnderline />
-          {videoData.map((it) => (
-            <Curriculum key={it.id} data={it} />
-          ))}
+          <Element
+            name="section2"
+            className="element"
+            children={
+              <CurriculumSection
+                videoData={videoData}
+                isInstructor={isInstructor}
+                courseId={courseData.id}
+              />
+            }
+          />
           <Space height="175px" />
 
-          <Heading children={'QnA'} />
-          <MyUnderline />
-          {/* questionData && questionData.map((it) => <Question key={it.id} data={it} />) 이건 왜 안되지..*/}
-          {Array.isArray(questionData) &&
-            questionData.map((it) => <Question key={it.id} data={it} />)}
+          <Element
+            name="section3"
+            className="element"
+            children={
+              <QuestionSection
+                questionData={questionData}
+                learnRate={learnRate}
+              />
+            }
+          />
           <Space height="175px" />
         </CourseSection>
-        <Navigation />
-        <Speaker />
       </Wrapper>
     );
 };

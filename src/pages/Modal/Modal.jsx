@@ -5,6 +5,7 @@ const Modal = (props) => {
   const { state, toggleModal, children } = props;
 
   const preventBubbling = (e) => {
+    if (!toggleModal) return;
     if (e.target === e.currentTarget) toggleModal();
   };
 

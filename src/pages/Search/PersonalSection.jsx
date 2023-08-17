@@ -28,7 +28,7 @@ const PersonalSection = ({ recentData }) => {
       <Heading2
         color={brand_black}
         size="24px"
-        children="자세한 사항은 개인 페이지를 확인하세요 ...(*￣０￣)ノ"
+        children="자세한 사항은 개인 페이지를 확인하세요"
       />
       <Space height="140px" />
       <Flex direction="row" justify="space-evenly">

@@ -9,9 +9,11 @@ import CoursePage from './pages/Course/CoursePage';
 import MyFooter from './components/organisms/MyFooter';
 import QuestionPage from './pages/Question/QuestionPage';
 import LecturePage from './pages/Lecture/LecturePage';
+import Navigation from './components/organisms/Navigation';
+import Speaker from './components/organisms/Speaker';
 
 const Router = () => {
-  const pathName = useLocation();
+  const path = useLocation();
 
   return (
     <>
@@ -25,6 +27,8 @@ const Router = () => {
         <Route path="/question/:id" element={<QuestionPage />} />
       </Routes>
       <MyFooter />
+      {path.pathname === '/' ? null : <Navigation />}
+      {path.pathname === '/' ? null : <Speaker />}
     </>
   );
 };

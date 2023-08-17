@@ -8,8 +8,6 @@ import Wrapper from '../../components/atoms/Wrapper';
 import SearchSection from './SearchSection';
 import TopicSection from './TopicSection';
 import PersonalSection from './PersonalSection';
-import Navigation from '../../components/organisms/Navigation';
-import Speaker from '../../components/organisms/Speaker';
 import LoadingPage from '../../components/templates/LoadingPage';
 
 const SearchPage = () => {
@@ -67,8 +65,6 @@ const SearchPage = () => {
             children={<PersonalSection recentData={recentData} />}
           />
         </Wrapper>
-        <Navigation />
-        <Speaker />
       </div>
     );
 };

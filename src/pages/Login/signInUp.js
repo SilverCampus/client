@@ -8,17 +8,19 @@ export const onRegister = async (signState, id, pw) => {
   let body = {
     username: id,
     password: pw,
-    nickname: '갓경호',
+    nickname: '갓정연',
     is_instructor: signState === 'instructorSignUp' ? true : false,
   };
+  console.log(body);
 
   try {
+    console.log(body.username);
     const res = await axios.post(apiUrl, body);
 
     alert('회원 가입 성공!');
     window.location.reload();
   } catch (err) {
-    if (err.response.status === 400) alert('이미 존재하는 id');
+    if (err.response && err.response.status === 400) alert('이미 존재하는 id');
     else console.log('onRegister - Api 실패', err);
   }
 };

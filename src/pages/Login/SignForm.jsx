@@ -57,6 +57,7 @@ const SignForm = () => {
     };
 
     try {
+      console.log(body);
       const res = await axios.post(apiUrl, body);
 
       localStorage.setItem('key', res.data.access);
@@ -65,7 +66,7 @@ const SignForm = () => {
       nav('/search');
     } catch (err) {
       if (err.response && err.response.status === 400) alert('계정 없음');
-      else alert('onLogin - Api 실패');
+      else console.log('onLogin - Api 실패', err);
     }
   };
 

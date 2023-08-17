@@ -3,8 +3,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { BaseUrl } from '../../App';
 
-import { brand_black, brand_white } from '../../utils/palette';
-import { BlueButtonColors } from '../Search/TopicSection';
+import { brand_black, BlueButtonColors } from '../../utils/palette';
 import { useSearchParams } from 'react-router-dom';
 
 import Text from '../../components/atoms/Text';

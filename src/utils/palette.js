@@ -6,3 +6,15 @@ export const brand_purple = '#8062D6';
 export const brand_darkpurple = '#322653';
 export const brand_yellow = '#E7B10A';
 export const brand_darkyellow = '#A07A04';
+
+export const BlueButtonColors = {
+  color: brand_white,
+  bgColor: brand_blue,
+  shadowColor: brand_darkblue,
+};
+
+export const PurpleButtonColors = {
+  color: brand_white,
+  bgColor: brand_purple,
+  shadowColor: brand_darkpurple,
+};

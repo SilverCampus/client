@@ -1,10 +1,5 @@
 import styled from 'styled-components';
-import {
-  brand_black,
-  brand_blue,
-  brand_darkblue,
-  brand_white,
-} from '../../utils/palette';
+import { brand_black, BlueButtonColors } from '../../utils/palette';
 import { useNavigate } from 'react-router-dom';
 
 // Imported Components
@@ -17,11 +12,6 @@ import PopButton from '../../components/molecules/PopButton';
 import Flex from '../../components/atoms/Flex';
 
 import categoryList from '../../utils/categoryList';
-export const BlueButtonColors = {
-  color: brand_white,
-  bgColor: brand_blue,
-  shadowColor: brand_darkblue,
-};
 
 const TopicSection = () => {
   const nav = useNavigate(null);
@@ -42,7 +32,7 @@ const TopicSection = () => {
       <Heading2
         color={brand_black}
         size="24px"
-        children="각 주제에 해당하는 강의들을 확인하세요 ...q(≧▽≦q)"
+        children="각 주제에 해당하는 강의들을 확인하세요"
       />
       <Space height="140px" />
 

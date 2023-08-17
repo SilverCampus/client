@@ -7,14 +7,12 @@ import axios from 'axios';
 
 // Imported Components
 import { FixedLogo } from '../Search/SearchSection';
-import Navigation from '../../components/organisms/Navigation';
 import Wrapper from '../../components/atoms/Wrapper';
 import Flex from '../../components/atoms/Flex';
 import Space from '../../components/atoms/Space';
 import Text from '../../components/atoms/Text';
 import MyUnderline from '../../components/atoms/MyUnderline';
 import CourseCard from './CourseCard';
-import Speaker from '../../components/organisms/Speaker';
 import LoadingPage from '../../components/templates/LoadingPage';
 
 const MainPage = () => {
@@ -110,8 +108,6 @@ const MainPage = () => {
           </>
         ))}
         <Space height="125px" />
-        <Navigation />
-        <Speaker />
       </Wrapper>
     );
 };
