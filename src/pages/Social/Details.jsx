@@ -13,6 +13,7 @@ import {
   brand_darkblue,
   brand_white,
 } from '../../utils/palette';
+import { useState } from 'react';
 
 import DefaultImg from '../../assets/images/default_image.jpeg';
 import Grade from '../../components/atoms/Grade';
@@ -20,21 +21,23 @@ import Text from '../../components/atoms/Text';
 import Flex from '../../components/atoms/Flex';
 
 const Details = ({ data }) => {
+  const [liked, setLiked] = useState(data.is_liked);
+
   return (
     <SocialCardContainer>
       <MainBar>
         <TextContainer>
           <Flex direction="row" gap="10px" width="200px" justify="start">
-            <Grade type={'Professor'} height="40px" />
-            <Text children={'갓경호'} weight={700} size="20px" />
+            <Grade type={data.user_grade} height="40px" />
+            <Text children={data.user_name} weight={700} size="20px" />
           </Flex>
           <Flex direction="row" gap="3px" width="400px">
             <FontAwesomeIcon icon={faHashtag} />
-            <Text children={'오공완'} weight={700} size="20px" />
+            <Text children={data.hashtag_name} weight={700} size="20px" />
           </Flex>
           <Flex direction="row" gap="3px" width="200px" justify="end">
             <FontAwesomeIcon
-              icon={faHeart}
+              icon={liked ? filledHeart : faHeart}
               style={{ color: brand_blue }}
               className="fa-2x"
             />
@@ -66,7 +69,13 @@ const Sidebar = styled.div`
 `;
 
 const ContentBox = styled.div`
+  word-wrap: break-word;
+  font-size: 16px;
+  font-family: GmarketSansMedium;
+  font-weight: 500;
+  overflow: scroll;
   height: 200px;
+  padding: 20px;
   border-radius: 20px;
   background-color: white;
 `;

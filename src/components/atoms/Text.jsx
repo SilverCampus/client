@@ -8,7 +8,7 @@ const Text = ({
   variant,
   as = 'span',
   spacing = '-0px',
-  font = 'SUITE-Regular',
+  font = 'GmarketSansLight',
   cursor = 'inherit',
   underline = false,
   lineHeight = '120%',

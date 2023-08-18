@@ -26,7 +26,7 @@ const SocialCard = ({ data }) => {
         </Flex>
         <FontAwesomeIcon
           icon={icon}
-          style={{ color: brand_blue, cursor: 'pointer' }}
+          style={{ color: brand_blue }}
           className="fa-2x"
         />
       </TextContainer>

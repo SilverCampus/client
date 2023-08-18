@@ -86,11 +86,14 @@ const PostForm = ({ toggleModal }) => {
     return (
       <FormWrapper>
         <FormContainer onSubmit={onSubmitHandler}>
-          <Heading size="40px" children="강좌 등록" />
+          <Heading size="40px" children="글 등록" />
           <MyUnderline />
           <Space height="50px" />
           <Flex>
-            <select value={hashtag} onChange={(e) => setHashtag(hashtag)}>
+            <select
+              value={hashtag}
+              onChange={(e) => setHashtag(e.target.value)}
+            >
               {hsList &&
                 hsList.map((it, idx) => (
                   <option key={idx} value={it.name}>
