@@ -47,6 +47,8 @@ const SignForm = () => {
 
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');
+  const [nickName, setNickName] = useState('');
+  const [buttonLoading, setButtonLoading] = useState(false);
 
   const onLogin = async (id, pw) => {
     let apiUrl = BaseUrl + '/campus/login/';
@@ -56,18 +58,18 @@ const SignForm = () => {
       password: pw,
     };
 
+    setButtonLoading(true);
     try {
-      console.log(body);
       const res = await axios.post(apiUrl, body);
 
       localStorage.setItem('key', res.data.access);
-
-      alert('로그인 성공!');
       nav('/search');
     } catch (err) {
-      if (err.response && err.response.status === 400) alert('계정 없음');
+      if (err.response && err.response.status === 401)
+        alert('계정이 존재하지 않습니다.');
       else console.log('onLogin - Api 실패', err);
     }
+    setButtonLoading(false);
   };
 
   const onSubmitHandler = (e) => {
@@ -76,7 +78,7 @@ const SignForm = () => {
     if (signState === 'login') {
       onLogin(id, pw);
     } else {
-      onRegister(signState, id, pw);
+      onRegister(signState, id, pw, nickName, setButtonLoading);
     }
   };
 
@@ -109,15 +111,37 @@ const SignForm = () => {
         </Flex>
         <Space height="8px" />
         <StyledInput
+          type="password"
           value={pw}
           onChange={(e) => {
             setPw(e.target.value);
           }}
         />
+
         {/* -------------------------------------------------------------------------- */}
+        {signState === 'login' ? null : (
+          <>
+            <Space height="25px" />
+            <Flex direction="row" justify="space-between">
+              <Text size="20px" weight={700} children="닉네임" />
+            </Flex>
+            <Space height="8px" />
+            <StyledInput
+              value={nickName}
+              onChange={(e) => {
+                setNickName(e.target.value);
+              }}
+            />
+          </>
+        )}
 
         <Line />
-        <PopButton width="100%" height="45px" colors={ButtonColors}>
+        <PopButton
+          width="100%"
+          height="45px"
+          colors={ButtonColors}
+          disabled={buttonLoading}
+        >
           <Text
             color={brand_white}
             size="20px"

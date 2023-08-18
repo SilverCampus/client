@@ -9,7 +9,7 @@ import CourseCard from '../Main/CourseCard';
 const LikeSection = ({ likedData }) => {
   return (
     <div>
-      <Heading size="40px" weight={700} children="찜한 강의" />
+      <Heading size="30px" weight={700} children="찜한 강의" />
       <MyUnderline />
       <Space height="100px" />
       <Flex direction="row" gap="40px">

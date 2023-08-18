@@ -8,6 +8,7 @@ const FlatButton = ({
   children,
   onClick,
   className,
+  disabled,
 }) => {
   return (
     <StyledFlatButton
@@ -16,6 +17,7 @@ const FlatButton = ({
       bgColor={bgColor}
       className={className}
       onClick={onClick}
+      disabled={disabled}
     >
       <Flex justify="center" align="center">
         {children}

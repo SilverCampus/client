@@ -13,36 +13,28 @@ import Details from './Details';
 
 const SocialPage = () => {
   const [isOpen, toggleModal] = useModal();
+
   // const getApiData = async () => {
-  //     const token = localStorage.getItem('key');
-  //     if (!token) {
-  //       alert('로그인 안 함');
-  //       return;
-  //     }
-  //     const config = {
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //     };
-  //     let url = BaseUrl + `/api/search-courses/?keyword=${searched}`;
+
+  //     let url = BaseUrl + `/social/posts`;
 
   //     try {
   //       const res = await axios.get(url, config);
 
-  //       let newData = [];
-  //       let arr = [];
+  //       // let newData = [];
+  //       // let arr = [];
 
-  //       res.data.forEach((it, idx) => {
-  //         arr.push(it);
-  //         if ((idx + 1) % 3 === 0) {
-  //           newData.push([...arr]);
-  //           arr = [];
-  //         }
-  //       });
+  //       // res.data.forEach((it, idx) => {
+  //       //   arr.push(it);
+  //       //   if ((idx + 1) % 3 === 0) {
+  //       //     newData.push([...arr]);
+  //       //     arr = [];
+  //       //   }
+  //       // });
 
-  //       if (arr.length > 0) {
-  //         newData.push([...arr]);
-  //       }
+  //       // if (arr.length > 0) {
+  //       //   newData.push([...arr]);
+  //       // }
   //       setData(newData);
   //       setLoading(false);
   //     } catch (err) {

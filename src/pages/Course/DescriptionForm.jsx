@@ -15,6 +15,7 @@ import Text from '../../components/atoms/Text';
 
 const DescriptionForm = ({ description, toggleModal, courseId }) => {
   const [tmp, setTmp] = useState(description);
+  const [buttonClicked, setButtonClicked] = useState(false);
 
   const changeDescription = async () => {
     const token = localStorage.getItem('key');
@@ -33,18 +34,20 @@ const DescriptionForm = ({ description, toggleModal, courseId }) => {
     };
     let url = BaseUrl + '/api/update-course-description/';
 
+    setButtonClicked(true);
     try {
       const res = await axios.patch(url, body, config);
+      toggleModal();
+      window.location.reload();
     } catch (err) {
       console.log(err);
     }
+    setButtonClicked(true);
   };
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
     changeDescription();
-    toggleModal();
-    window.location.reload();
   };
 
   return (
@@ -55,7 +58,12 @@ const DescriptionForm = ({ description, toggleModal, courseId }) => {
         <Space height="50px" />
         <Area value={tmp} onChange={(e) => setTmp(e.target.value)} />
         <Space height="50px" />
-        <FlatButton width="100%" height="50px" bgColor={brand_blue}>
+        <FlatButton
+          width="100%"
+          height="50px"
+          bgColor={brand_blue}
+          disabled={buttonClicked}
+        >
           <Text
             color={brand_white}
             size="20px"

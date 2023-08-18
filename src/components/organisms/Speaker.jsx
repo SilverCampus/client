@@ -2,8 +2,14 @@ import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faVolumeLow, faVolumeXmark } from '@fortawesome/free-solid-svg-icons';
+import { useLocation } from 'react-router-dom';
 
-import search from '../../assets/audios/Search.mp3';
+import Home from '../../assets/audios/Home_signup_login.mp3';
+import Search from '../../assets/audios/Search.mp3';
+import Main from '../../assets/audios/Main.mp3';
+import Video from '../../assets/audios/Video.mp3';
+import Play from '../../assets/audios/Play.mp3';
+import Mypage from '../../assets/audios/Mypage.mp3';
 
 import {
   brand_darkyellow,
@@ -14,6 +20,32 @@ import {
 const Speaker = () => {
   const [isClicked, setClick] = React.useState(true);
   const $audio = useRef();
+
+  const path = useLocation();
+  let mp3File;
+  switch (path) {
+    case '/':
+      mp3File = Home;
+      break;
+    case '/search':
+      mp3File = Search;
+      break;
+    case '/main':
+      mp3File = Main;
+      break;
+    case '/mypage':
+      mp3File = Mypage;
+      break;
+    case '/course':
+      mp3File = Video;
+      break;
+    case '/lecture':
+      mp3File = Play;
+      break;
+    default:
+      mp3File = Home;
+      break;
+  }
 
   const handleClick = () => {
     setClick(!isClicked);
@@ -40,7 +72,7 @@ const Speaker = () => {
       <audio
         style={{ display: 'none' }}
         ref={$audio}
-        src={search}
+        src={mp3File}
         controls={true}
       />
     </StyledNav>

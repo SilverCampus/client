@@ -19,10 +19,10 @@ const Curriculum = ({ data, category, credit, courseName }) => {
         )
       }
     >
-      <Flex direction="row" width="auto" gap="10px">
+      <Flex direction="row" align="center" width="auto" gap="15px">
         <FontAwesomeIcon icon={faCirclePlay} className="fa-2x" />
-        <Text size="25px" children={`${data.order_in_course} 강`} />
-        <Text size="25px" children={data.title} />
+        <Text size="20px" weight={500} children={`${data.order_in_course}강`} />
+        <Text size="20px" weight={500} children={data.title} />
       </Flex>
       {data.completed ? <Tag type="완료" /> : null}
     </CurriculumContainer>
@@ -37,7 +37,7 @@ const CurriculumContainer = styled.div`
 
   margin: 0 auto;
   width: 500px;
-  padding: 10px 20px;
+  padding: 10px 20px 7px;
   border-radius: 10px;
   border: 1px solid #aaa;
   border-bottom: 3px solid black;

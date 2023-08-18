@@ -183,7 +183,7 @@ const CoursePage = () => {
 
         <CourseSection>
           <Space height="175px" />
-          <Heading size="62px" weight={700} children={courseData.title} />
+          <Heading size="50px" weight={700} children={courseData.title} />
           <MyUnderline />
           <Space height="50px" />
           <Thumbnail src={courseData.thumbnail} />
@@ -198,15 +198,15 @@ const CoursePage = () => {
                 />
               </Flex>
               <Text
-                size="40px"
+                size="30px"
                 weight={700}
                 children={`강의자 | ${courseData.instructor}`}
               />
             </Flex>
             <Flex direction="row" width="auto" align="center" gap="20px">
               <PopButton
-                width="85px"
-                height="85px"
+                width="60px"
+                height="60px"
                 colors={PurpleButtonColors}
                 children={<FontAwesomeIcon icon={faHeart} className="fa-2x" />}
                 active={isLiked}
@@ -214,11 +214,11 @@ const CoursePage = () => {
               />
               <PopButton
                 width="275px"
-                height="85px"
+                height="70px"
                 colors={BlueButtonColors}
                 children={
                   <Text
-                    size="35px"
+                    size="25px"
                     weight={700}
                     children={
                       learnRate !== null
@@ -232,7 +232,7 @@ const CoursePage = () => {
               />
             </Flex>
           </Flex>
-          <Space height="175px" />
+          <Space height="200px" />
           <Element
             name="section1"
             className="element"
@@ -243,7 +243,7 @@ const CoursePage = () => {
               />
             }
           />
-          <Space height="175px" />
+          <Space height="250px" />
 
           <Element
             name="section2"
@@ -259,7 +259,7 @@ const CoursePage = () => {
               />
             }
           />
-          <Space height="175px" />
+          <Space height="250px" />
           <Element
             name="section3"
             className="element"
@@ -271,7 +271,7 @@ const CoursePage = () => {
               />
             }
           />
-          <Space height="175px" />
+          <Space height="200px" />
         </CourseSection>
       </Wrapper>
     );

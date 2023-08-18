@@ -10,6 +10,7 @@ const PopButton = ({
   className,
   active,
   onClick,
+  disabled,
 }) => {
   let activeClass = className + (active ? ' isActive' : '');
 
@@ -21,6 +22,7 @@ const PopButton = ({
       className={activeClass}
       active={active}
       onClick={onClick}
+      disabled={disabled}
     >
       <Flex
         direction="row"
@@ -38,7 +40,7 @@ const PopButtonContainer = styled.button`
   height: ${({ height }) => height};
   border-radius: 10px;
   border-bottom: 5px solid ${({ colors }) => colors.shadowColor};
-  padding-top: 5px;
+  padding-top: 10px;
 
   color: ${({ colors }) => colors.color};
   background-color: ${({ colors }) => colors.bgColor};

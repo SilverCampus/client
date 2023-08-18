@@ -39,7 +39,7 @@ const HomePage = () => {
         onClick={toggleModal}
       >
         <Text
-          size="25px"
+          size="23px"
           weight={700}
           color={brand_white}
           spacing="2px"

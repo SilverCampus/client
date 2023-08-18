@@ -8,7 +8,7 @@ import CourseCard from '../Main/CourseCard';
 const BuySection = ({ boughtData }) => {
   return (
     <div>
-      <Heading size="40px" weight={700} children="구매한 강의" />
+      <Heading size="30px" weight={700} children="구매한 강의" />
       <MyUnderline />
       <Space height="100px" />
       <Flex direction="row" gap="40px">

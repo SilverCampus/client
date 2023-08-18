@@ -108,7 +108,7 @@ const MyPage = () => {
     getLikedData();
   }, []);
 
-  const loading = loading1 || loading2;
+  const loading = loading1 || loading2 || loading3;
 
   if (loading) return <LoadingPage />;
   else {
@@ -118,14 +118,14 @@ const MyPage = () => {
         <Space height="175px" />
 
         <Name>
-          <Grade type={userData.grade} height="60px" />
+          <Grade type={userData.grade} height="50px" />
           <Text
             color={brand_blue}
-            size="60px"
+            size="50px"
             weight={700}
             children={userData.nickname}
           />
-          <Text size="60px" weight={700} children={'님의 페이지'} />
+          <Text size="50px" weight={700} children={'님의 페이지'} />
         </Name>
         <MyUnderline />
         <Space height="100px" />

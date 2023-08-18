@@ -14,10 +14,11 @@ import Text from '../../components/atoms/Text';
 import MyUnderline from '../../components/atoms/MyUnderline';
 import CourseCard from './CourseCard';
 import LoadingPage from '../../components/templates/LoadingPage';
+import Heading from '../../components/molecules/Heading';
 
 const MainPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const searched = searchParams.get('search');
+  let searched = searchParams.get('search');
 
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -56,12 +57,12 @@ const MainPage = () => {
       setLoading(false);
     } catch (err) {
       if (err.response && err.response.status === 400) alert('검색 한 자 이상');
-      else if (err.response && err.response.status === 404)
-        alert('검색 결과 없음');
-      else console.log('getApiData Error', err);
+      else if (err.response && err.response.status === 404) {
+        searched = '결과 없음';
+        setData([]);
+        setLoading(false);
+      } else console.log('getApiData Error', err);
     }
-
-    return false;
   };
 
   useEffect(() => {
@@ -90,22 +91,34 @@ const MainPage = () => {
         </Flex>
         <MyUnderline />
         <Space height="100px" />
-        {data.map((it, idx) => (
+        {data.length === 0 ? (
           <>
-            <StyledFlex
-              width="auto"
-              justify="left"
-              direction="row"
-              gap="40px"
-              key={idx}
-            >
-              {it.map((iter, idxx) => (
-                <CourseCard key={iter.id} data={iter} key={idxx} />
-              ))}
-            </StyledFlex>
+            <Space height="50px" />
+            <Heading
+              color={brand_black}
+              size="30px"
+              children="검색 결과가 존재하지 않습니다."
+            />
             <Space height="50px" />
           </>
-        ))}
+        ) : (
+          data.map((it, idx) => (
+            <>
+              <StyledFlex
+                width="auto"
+                justify="left"
+                direction="row"
+                gap="40px"
+                key={idx}
+              >
+                {it.map((iter, idxx) => (
+                  <CourseCard key={iter.id} data={iter} key={idxx} />
+                ))}
+              </StyledFlex>
+              <Space height="50px" />
+            </>
+          ))
+        )}
         <Space height="125px" />
       </Wrapper>
     );

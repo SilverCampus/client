@@ -19,6 +19,11 @@ const Text = ({
   isCut = false,
   ...rest
 }) => {
+  let family;
+  if (weight === 300) family = 'GmarketSansLight';
+  else if (weight === 500) family = 'GmarketSansMedium';
+  else if (weight === 700) family = 'GmarketSansBold';
+
   return (
     <StyledText
       size={size}
@@ -27,7 +32,7 @@ const Text = ({
       variant={variant}
       as={as}
       spacing={spacing}
-      font={font}
+      font={family}
       align={align}
       cursor={cursor}
       underline={underline}

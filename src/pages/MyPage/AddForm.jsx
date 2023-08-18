@@ -21,7 +21,6 @@ const AddForm = ({ toggleModal }) => {
   const [category, setCateogory] = useState('운동');
   const [credit, setCredit] = useState(2);
   const [image, setImage] = useState(defaultImg);
-  console.log(title, description, category, credit, image);
 
   const addCourse = async () => {
     const token = localStorage.getItem('key');

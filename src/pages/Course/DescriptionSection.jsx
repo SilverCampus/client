@@ -12,6 +12,7 @@ import FlatButton from '../../components/molecules/FlatButton';
 import Modal from '../Modal/Modal';
 import useModal from '../Modal/useModal';
 import DescriptionForm from './DescriptionForm';
+import Heading2 from '../../components/molecules/Heading2';
 
 const DescriptionSection = ({ courseData, isInstructor }) => {
   const [isOpen, toggleModal] = useModal();
@@ -31,7 +32,9 @@ const DescriptionSection = ({ courseData, isInstructor }) => {
       ) : null}
 
       <Space height="50px" />
-      <Text children={courseData.description} size="20px" weight={700} />
+
+      <Heading2 children={courseData.description} size="20px" align="center" />
+
       <Modal
         state={isOpen}
         children={

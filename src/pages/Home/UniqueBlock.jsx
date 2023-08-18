@@ -1,32 +1,25 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShapes } from '@fortawesome/free-solid-svg-icons';
 
 import Flex from '../../components/atoms/Flex';
 import styled from 'styled-components';
-import { brand_black, brand_darkblue, brand_white } from '../../utils/palette';
+import { brand_black, brand_white } from '../../utils/palette';
 import Text from '../../components/atoms/Text';
 
-const UniqueBlock = () => {
+const UniqueBlock = ({ icon, title, text }) => {
   return (
     <Flex width="auto" direction="row" gap="50px">
       <IconBlock>
-        <FontAwesomeIcon icon={faShapes} className="fa-4x" />
+        <FontAwesomeIcon icon={icon} className="fa-4x" />
       </IconBlock>
       <Flex width="auto" gap="10px" align="left">
-        <Text
-          children="직관적인 UI"
-          color={brand_black}
-          size="30px"
-          weight={700}
-        />
+        <Text children={title} color={brand_black} size="30px" weight={700} />
         <Text
           children="직관적인 UI"
           color={brand_black}
           size="24px"
           weight={500}
         >
-          보다 쉽고 직관적인 화면 구성을 통해 시니어분들에게 한걸음 가까이
-          다가갑니다.
+          {text}
         </Text>
       </Flex>
     </Flex>

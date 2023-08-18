@@ -31,7 +31,8 @@ const TagContainer = styled.div`
   justify-content: center;
 
   width: 70px;
-  height: 35px;
+  padding-top: 5px;
+  height: 30px;
   border-radius: 17px;
 
   background-color: ${({ bgColor }) => bgColor};
