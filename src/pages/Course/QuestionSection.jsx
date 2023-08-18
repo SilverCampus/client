@@ -20,7 +20,7 @@ const QuestionSection = ({ questionData, learnRate, courseId }) => {
     <QuestionSectionContainer>
       <Heading children="QnA" size="40px" weight={700} />
       <MyUnderline />
-      {learnRate ? (
+      {learnRate !== null ? (
         <RightButton
           width="50px"
           height="50px"

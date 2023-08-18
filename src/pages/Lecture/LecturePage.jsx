@@ -54,7 +54,9 @@ const LecturePage = () => {
       setRestVideo(res.data.else_videos);
       setLoading(false);
     } catch (err) {
-      console.log(err);
+      if (err.response && err.response.status === 404)
+        alert('해당 강의의 수강자가 아닙니다.');
+      else console.log(err);
     }
   };
 

@@ -5,11 +5,9 @@ import { BaseUrl } from '../../App';
 
 import Wrapper from '../../components/atoms/Wrapper';
 import Space from '../../components/atoms/Space';
-import Heading from '../../components/molecules/Heading';
 import { FixedLogo } from '../Search/SearchSection';
 import MyUnderline from '../../components/atoms/MyUnderline';
 import Flex from '../../components/atoms/Flex';
-import CourseCard from '../Main/CourseCard';
 import LoadingPage from '../../components/templates/LoadingPage';
 import BuySection from './BuySection';
 import LikeSection from './LikeSection';
@@ -20,6 +18,8 @@ import FlatButton from '../../components/molecules/FlatButton';
 import Modal from '../Modal/Modal';
 import useModal from '../Modal/useModal';
 import AddForm from './AddForm';
+import { RightButton } from '../Course/DescriptionSection';
+import { useNavigate } from 'react-router-dom';
 
 const MyPage = () => {
   const [userData, setUserData] = useState(null);
@@ -110,6 +110,13 @@ const MyPage = () => {
 
   const loading = loading1 || loading2 || loading3;
 
+  const nav = useNavigate(null);
+  const handleLogOut = () => {
+    localStorage.removeItem('key');
+    nav('/');
+    window.location.reload();
+  };
+
   if (loading) return <LoadingPage />;
   else {
     return (
@@ -128,6 +135,20 @@ const MyPage = () => {
           <Text size="50px" weight={700} children={'님의 페이지'} />
         </Name>
         <MyUnderline />
+        <RightButton
+          width="100px"
+          height="60px"
+          bgColor={brand_blue}
+          onClick={handleLogOut}
+          children={
+            <Text
+              color={brand_white}
+              size="16px"
+              weight={700}
+              children="로그아웃"
+            />
+          }
+        />
         <Space height="100px" />
         <BuySection boughtData={boughtData} />
         <Space height="175px" />

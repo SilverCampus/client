@@ -54,7 +54,6 @@ const AddForm = ({ toggleModal }) => {
     // 		"credits": 3
 
     try {
-      console.log(formData);
       const res = await axios.post(url, formData, config);
       toggleModal();
       window.location.reload();
