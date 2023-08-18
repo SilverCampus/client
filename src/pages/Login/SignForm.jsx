@@ -42,8 +42,8 @@ const SignForm = () => {
   const [signState, setState] = useState('login');
   const nav = useNavigate(null);
 
-  // const [id, pw, getId, getPw, showPw, setShowPw] = useLoginForm();
-  // const pwInputType = showPw ? 'text' : 'password';
+  const [showPw, setShowPw] = useState(false);
+  const pwInputType = showPw ? 'text' : 'password';
 
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');
@@ -106,12 +106,17 @@ const SignForm = () => {
           <Text size="20px" weight={700} children="비밀번호" />
           <div>
             <label htmlFor="saveId">비밀번호 표시</label>
-            <input type="checkbox" id="showId" />
+            <input
+              type="checkbox"
+              value={showPw}
+              id="showId"
+              onChange={(e) => setShowPw(!showPw)}
+            />
           </div>
         </Flex>
         <Space height="8px" />
         <StyledInput
-          type="password"
+          type={pwInputType}
           value={pw}
           onChange={(e) => {
             setPw(e.target.value);

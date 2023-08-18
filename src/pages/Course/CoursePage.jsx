@@ -25,8 +25,13 @@ import Tag from '../../components/molecules/Tag';
 import DescriptionSection from './DescriptionSection';
 import CurriculumSection from './CurriculumSection';
 import QuestionSection from './QuestionSection';
+import Speaker from '../../components/organisms/Speaker';
+import Video from '../../assets/audios/Video.mp3';
 
 const CoursePage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const { id } = useParams();
 
   const [courseData, setCourseData] = useState(null);
@@ -273,6 +278,7 @@ const CoursePage = () => {
           />
           <Space height="200px" />
         </CourseSection>
+        <Speaker src={Video} />
       </Wrapper>
     );
 };

@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { BaseUrl } from '../../App';
+import Speaker from '../../components/organisms/Speaker';
+import Mypage from '../../assets/audios/Mypage.mp3';
 
 import Wrapper from '../../components/atoms/Wrapper';
 import Space from '../../components/atoms/Space';
@@ -103,6 +105,7 @@ const MyPage = () => {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     getUserData();
     getBoughtData();
     getLikedData();
@@ -177,6 +180,7 @@ const MyPage = () => {
           toggleModal={toggleModal}
           children={<AddForm toggleModal={toggleModal} />}
         />
+        <Speaker src={Mypage} />
       </Wrapper>
     );
   }

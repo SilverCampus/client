@@ -31,7 +31,7 @@ const Router = () => {
       </Routes>
       <MyFooter />
       {path.pathname === '/' ? null : <Navigation />}
-      {path.pathname === '/' ? null : <Speaker />}
+      {/* {path.pathname === '/' ? null : <Speaker />} */}
     </>
   );
 };

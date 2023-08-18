@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { brand_white } from '../../utils/palette';
+import { useEffect } from 'react';
 
 // Imported Components
 import IntroSection from './IntroSection';
@@ -11,8 +12,13 @@ import FlatButton from '../../components/molecules/FlatButton';
 import Modal from '../Modal/Modal';
 import SignForm from '../Login/SignForm';
 import useModal from '../Modal/useModal';
+import Speaker from '../../components/organisms/Speaker';
+import Home from '../../assets/audios/Home_signup_login.mp3';
 
 const HomePage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const [isOpen, toggleModal] = useModal();
 
   return (
@@ -46,6 +52,7 @@ const HomePage = () => {
           children="지금 시작하기"
         />
       </FixButton>
+      <Speaker src={Home} />
     </HomePageContainer>
   );
 };

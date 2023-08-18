@@ -9,8 +9,13 @@ import SearchSection from './SearchSection';
 import TopicSection from './TopicSection';
 import PersonalSection from './PersonalSection';
 import LoadingPage from '../../components/templates/LoadingPage';
+import Speaker from '../../components/organisms/Speaker';
+import Search from '../../assets/audios/Search.mp3';
 
 const SearchPage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const [recentData, setRecentData] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -65,6 +70,7 @@ const SearchPage = () => {
             children={<PersonalSection recentData={recentData} />}
           />
         </Wrapper>
+        <Speaker src={Search} />
       </div>
     );
 };

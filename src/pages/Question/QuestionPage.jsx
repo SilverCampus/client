@@ -18,6 +18,9 @@ import FlatButton from '../../components/molecules/FlatButton';
 import Comments from './Comments';
 
 const QuestionPage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const { id } = useParams();
   const [questionData, setQuestionData] = useState(null);
   const [loading, setLoading] = useState(true);

@@ -21,6 +21,9 @@ import PostForm from './PostForm';
 import LoadingPage from '../../components/templates/LoadingPage';
 
 const SocialPage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 1000);
+  }, []);
   const [data, setData] = useState(null);
   console.log(data);
   const [loading, setLoading] = useState(true);

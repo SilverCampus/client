@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import { BaseUrl } from '../../App';
-
+import Play from '../../assets/audios/Play.mp3';
 import { brand_black, BlueButtonColors } from '../../utils/palette';
 import { useSearchParams } from 'react-router-dom';
 
@@ -16,8 +16,12 @@ import TitleVideosList from './TitleVideoList';
 import OtherVideosList from './OtherVideoList';
 import LoadingPage from '../../components/templates/LoadingPage';
 import Tag from '../../components/molecules/Tag';
+import Speaker from '../../components/organisms/Speaker';
 
 const LecturePage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 1000);
+  }, []);
   const [searchParams, setSearchParams] = useSearchParams();
   const id = Number(searchParams.get('courseId'));
   const order = Number(searchParams.get('order'));
@@ -142,6 +146,7 @@ const LecturePage = () => {
           </VideoList>
         </LectureSection>
         <Space height="175px" />
+        <Speaker src={Play} />
       </Wrapper>
     );
 };

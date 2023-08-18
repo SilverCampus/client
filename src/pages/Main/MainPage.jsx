@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { useSearchParams } from 'react-router-dom';
 import { brand_black, brand_blue } from '../../utils/palette';
 import { BaseUrl } from '../../App';
+import Main from '../../assets/audios/Main.mp3';
+import Speaker from '../../components/organisms/Speaker';
 import axios from 'axios';
 
 // Imported Components
@@ -17,6 +19,9 @@ import LoadingPage from '../../components/templates/LoadingPage';
 import Heading from '../../components/molecules/Heading';
 
 const MainPage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 1000);
+  }, []);
   const [searchParams, setSearchParams] = useSearchParams();
   let searched = searchParams.get('search');
 
@@ -120,6 +125,7 @@ const MainPage = () => {
           ))
         )}
         <Space height="125px" />
+        <Speaker src={Main} />
       </Wrapper>
     );
 };
