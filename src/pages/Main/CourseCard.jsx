@@ -59,7 +59,7 @@ const CourseCard = ({ data }) => {
         <ThumbNail img={data.thumbnail} />
         <Details>
           <Flex direction="row" width="auto" gap="13px" justify="start">
-            <Tag type={data.category} />
+            <Tag type={data.category_name} />
             <Tag type={`학점${data.credits}`} text={`${data.credits}학점`} />
           </Flex>
           <Text children={data.title} size="23px" weight={700} />

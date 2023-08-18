@@ -160,6 +160,7 @@ const AnswerInput = styled.textarea`
   border-radius: 12px;
   border: 1px solid #b0b0b0;
   resize: none;
+  background-color: #fafafa;
 
   &:focus {
     outline: none;

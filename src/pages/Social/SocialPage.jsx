@@ -22,7 +22,7 @@ import LoadingPage from '../../components/templates/LoadingPage';
 
 const SocialPage = () => {
   useEffect(() => {
-    window.scrollTo(0, 1000);
+    window.scrollTo(0, 0);
   }, []);
   const [data, setData] = useState(null);
   console.log(data);
@@ -35,9 +35,21 @@ const SocialPage = () => {
 
   const getSocialData = async () => {
     let url = BaseUrl + `/social/board-posts`;
+    const token = localStorage.getItem('key');
+
+    if (!token) {
+      alert('로그인 안 함');
+      return;
+    }
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
 
     try {
-      const res = await axios.get(url);
+      const res = await axios.get(url, config);
 
       // let newData = [];
       // let arr = [];

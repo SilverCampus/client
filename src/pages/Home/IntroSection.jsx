@@ -13,7 +13,7 @@ const IntroSection = () => {
     <Wrapper img={imgURL}>
       <Space height="285px" />
       <Flex>
-        <Logo height="290px" />
+        <Logo height="290px" disable={true} />
       </Flex>
       <Space height="245px" />
       <GoDown color={brand_white} children="저희에 대해 궁금하신가요?" />
