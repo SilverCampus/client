@@ -34,7 +34,7 @@ const SocialPage = () => {
   };
 
   const getSocialData = async () => {
-    let url = BaseUrl + `/social/board-posts`;
+    let url = BaseUrl + `/social/board-posts/`;
     const token = localStorage.getItem('key');
 
     if (!token) {
@@ -49,7 +49,10 @@ const SocialPage = () => {
     };
 
     try {
+      console.log(config);
       const res = await axios.get(url, config);
+
+      setData(res.data);
 
       // let newData = [];
       // let arr = [];
@@ -67,7 +70,6 @@ const SocialPage = () => {
       // }
 
       // setData(newData);
-      setData(res.data);
       setLoading(false);
     } catch (err) {
       if (err.response && err.response.status === 400) alert('검색 한 자 이상');

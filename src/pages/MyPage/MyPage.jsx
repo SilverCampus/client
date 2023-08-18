@@ -20,7 +20,6 @@ import FlatButton from '../../components/molecules/FlatButton';
 import Modal from '../Modal/Modal';
 import useModal from '../Modal/useModal';
 import AddForm from './AddForm';
-import { RightButton } from '../Course/DescriptionSection';
 import { useNavigate } from 'react-router-dom';
 
 const MyPage = () => {
@@ -35,6 +34,7 @@ const MyPage = () => {
 
   const [isOpen, toggleModal] = useModal();
 
+  const [leftCredit, setLeftCredit] = useState(0);
   const getUserData = async () => {
     const token = localStorage.getItem('key');
     if (!token) {
@@ -111,6 +111,20 @@ const MyPage = () => {
     getLikedData();
   }, []);
 
+  useEffect(() => {
+    if (!userData) return;
+    if (userData.total_credits < 9)
+      setLeftCredit(['Freshman', 9 - userData.total_credits]);
+    else if (userData.total_credits < 27)
+      setLeftCredit(['Undergraduate', 27 - userData.total_credits]);
+    else if (userData.total_credits < 60)
+      setLeftCredit(['Bachelor', 60 - userData.total_credits]);
+    else if (userData.total_credits < 120)
+      setLeftCredit(['Master', 120 - userData.total_credits]);
+    else if (userData.total_credits < 180)
+      setLeftCredit(['Doctorate', 180 - userData.total_credits]);
+  }, [userData]);
+
   const loading = loading1 || loading2 || loading3;
 
   const nav = useNavigate(null);
@@ -138,20 +152,37 @@ const MyPage = () => {
           <Text size="50px" weight={700} children={'님의 페이지'} />
         </Name>
         <MyUnderline />
-        <RightButton
-          width="100px"
-          height="60px"
-          bgColor={brand_blue}
-          onClick={handleLogOut}
-          children={
+        <Space height="30px" />
+        <Flex justify="space-between" direction="row">
+          <Flex width="auto" direction="row" gap="20px">
             <Text
-              color={brand_white}
-              size="16px"
+              size="30px"
               weight={700}
-              children="로그아웃"
+              children={`${userData.total_credits} / 180 - `}
             />
-          }
-        />
+            <Grade type={leftCredit[0]} height="30px" />
+            <Text
+              size="30px"
+              weight={700}
+              children={`까지 ${leftCredit[1]}학점 남음`}
+            />
+          </Flex>
+
+          <FlatButton
+            width="100px"
+            height="60px"
+            bgColor={brand_blue}
+            onClick={handleLogOut}
+            children={
+              <Text
+                color={brand_white}
+                size="16px"
+                weight={700}
+                children="로그아웃"
+              />
+            }
+          />
+        </Flex>
         <Space height="100px" />
         <BuySection boughtData={boughtData} />
         <Space height="175px" />

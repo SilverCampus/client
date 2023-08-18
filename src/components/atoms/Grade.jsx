@@ -26,7 +26,7 @@ const Grade = ({ type, height }) => {
 };
 
 const TierImg = styled.img`
-  //   height: 100%;
+  height: ${({ height }) => height};
 `;
 
 export default Grade;
