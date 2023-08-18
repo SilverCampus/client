@@ -20,7 +20,7 @@ import Heading from '../../components/molecules/Heading';
 
 const MainPage = () => {
   useEffect(() => {
-    window.scrollTo(0, 1000);
+    window.scrollTo(0, 0);
   }, []);
   const [searchParams, setSearchParams] = useSearchParams();
   let searched = searchParams.get('search');
@@ -117,7 +117,7 @@ const MainPage = () => {
                 key={idx}
               >
                 {it.map((iter, idxx) => (
-                  <CourseCard key={iter.id} data={iter} key={idxx} />
+                  <CourseCard key={iter.id} data={iter} />
                 ))}
               </StyledFlex>
               <Space height="50px" />

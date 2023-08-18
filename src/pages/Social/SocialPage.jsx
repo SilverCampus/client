@@ -34,7 +34,7 @@ const SocialPage = () => {
   };
 
   const getSocialData = async () => {
-    let url = BaseUrl + `/social/posts`;
+    let url = BaseUrl + `/social/board-posts`;
 
     try {
       const res = await axios.get(url);

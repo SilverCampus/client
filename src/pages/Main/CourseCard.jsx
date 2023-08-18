@@ -15,6 +15,8 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
 // Imported Components
 import Text from '../../components/atoms/Text';
+import Flex from '../../components/atoms/Flex';
+import Tag from '../../components/molecules/Tag';
 
 const PurpleButtonColors = {
   color: brand_white,
@@ -56,6 +58,10 @@ const CourseCard = ({ data }) => {
       <div>
         <ThumbNail img={data.thumbnail} />
         <Details>
+          <Flex direction="row" width="auto" gap="13px" justify="start">
+            <Tag type={data.category} />
+            <Tag type={`학점${data.credits}`} text={`${data.credits}학점`} />
+          </Flex>
           <Text children={data.title} size="23px" weight={700} />
           <Text children={data.instructor} size="18px" align="right" />
         </Details>
@@ -77,7 +83,7 @@ const CourseCard = ({ data }) => {
 const CourseCardContainer = styled.div`
   position: relative;
   width: 300px;
-  height: 360px;
+  height: 380px;
   border-radius: 5px;
   box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.4);
   background-color: white;
@@ -97,7 +103,7 @@ const Details = styled.div`
   flex-direction: column;
   gap: 10px;
 
-  padding: 30px;
+  padding: 13px 30px;
 `;
 
 const FixButton = styled(PopButton)`
