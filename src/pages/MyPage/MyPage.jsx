@@ -58,6 +58,8 @@ const MyPage = () => {
     }
   };
 
+  console.log(userData);
+
   const getBoughtData = async () => {
     const token = localStorage.getItem('key');
     if (!token) {
@@ -114,15 +116,15 @@ const MyPage = () => {
   useEffect(() => {
     if (!userData) return;
     if (userData.total_credits < 9)
-      setLeftCredit(['Freshman', 9 - userData.total_credits]);
+      setLeftCredit(['Undergraduate', 9 - userData.total_credits]);
     else if (userData.total_credits < 27)
-      setLeftCredit(['Undergraduate', 27 - userData.total_credits]);
+      setLeftCredit(['Bachelor', 27 - userData.total_credits]);
     else if (userData.total_credits < 60)
-      setLeftCredit(['Bachelor', 60 - userData.total_credits]);
+      setLeftCredit(['Master', 60 - userData.total_credits]);
     else if (userData.total_credits < 120)
-      setLeftCredit(['Master', 120 - userData.total_credits]);
+      setLeftCredit(['Doctorate', 120 - userData.total_credits]);
     else if (userData.total_credits < 180)
-      setLeftCredit(['Doctorate', 180 - userData.total_credits]);
+      setLeftCredit(['Professor', 180 - userData.total_credits]);
   }, [userData]);
 
   const loading = loading1 || loading2 || loading3;

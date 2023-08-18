@@ -25,13 +25,8 @@ const SocialPage = () => {
     window.scrollTo(0, 0);
   }, []);
   const [data, setData] = useState(null);
-  console.log(data);
   const [loading, setLoading] = useState(true);
   const [isOpen, toggleModal] = useModal();
-  const [isOpen2, setIsOpen2] = useState(false);
-  const toggleModal2 = () => {
-    setIsOpen2(!isOpen2);
-  };
 
   const getSocialData = async () => {
     let url = BaseUrl + `/social/board-posts/`;
@@ -49,27 +44,21 @@ const SocialPage = () => {
     };
 
     try {
-      console.log(config);
       const res = await axios.get(url, config);
 
-      setData(res.data);
-
-      // let newData = [];
-      // let arr = [];
-
-      // res.data.forEach((it, idx) => {
-      //   arr.push(it);
-      //   if ((idx + 1) % 3 === 0) {
-      //     newData.push([...arr]);
-      //     arr = [];
-      //   }
-      // });
-
-      // if (arr.length > 0) {
-      //   newData.push([...arr]);
-      // }
-
-      // setData(newData);
+      let newData = [];
+      let arr = [];
+      res.data.forEach((it, idx) => {
+        arr.push(it);
+        if ((idx + 1) % 3 === 0) {
+          newData.push([...arr]);
+          arr = [];
+        }
+      });
+      if (arr.length > 0) {
+        newData.push([...arr]);
+      }
+      setData(newData);
       setLoading(false);
     } catch (err) {
       if (err.response && err.response.status === 400) alert('검색 한 자 이상');
@@ -79,6 +68,7 @@ const SocialPage = () => {
     }
   };
 
+  console.log(data);
   useEffect(() => {
     getSocialData();
   }, []);
@@ -87,33 +77,38 @@ const SocialPage = () => {
   else
     return (
       <Wrapper>
-        <FixedLogo type="dark" height="55px" />
-        <Space height="175px" />
-        <Heading size="50px" children="청년광장" />
-        <MyUnderline />
-        <RightButton
-          width="50px"
-          height="50px"
-          bgColor={brand_blue}
-          onClick={toggleModal2}
-          children={<FontAwesomeIcon icon={faPlus} className="fa-2x" />}
-        />
-        <Space height="175px" />
+        <div style={{ position: 'relative' }}>
+          <FixedLogo type="dark" height="55px" />
+          <Space height="175px" />
+          <Heading size="50px" children="청년광장" />
+          <MyUnderline />
+          <RightButton
+            width="50px"
+            height="50px"
+            bgColor={brand_blue}
+            onClick={toggleModal}
+            children={<FontAwesomeIcon icon={faPlus} className="fa-2x" />}
+          />
+          <Space height="175px" />
 
-        <Flex width="1000px">
-          <SocialCard toggleModal={toggleModal} />
-        </Flex>
-        <Space height="175px" />
-        <Modal
-          state={isOpen}
-          toggleModal={toggleModal}
-          children={<Details />}
-        />
-        <Modal
-          state={isOpen2}
-          toggleModal={toggleModal2}
-          children={<PostForm />}
-        />
+          {data.map((it, idx) => (
+            <>
+              <Flex key={idx} direction="row" gap="30px">
+                {it.map((itt, idxx) => {
+                  return <SocialCard key={idxx} data={itt} />;
+                })}
+              </Flex>
+              <Space height="100px" />
+            </>
+          ))}
+          <Flex width="1000px"></Flex>
+          <Space height="175px" />
+          <Modal
+            state={isOpen}
+            toggleModal={toggleModal}
+            children={<PostForm toggleModal={toggleModal} />}
+          />
+        </div>
       </Wrapper>
     );
 };

@@ -7,14 +7,19 @@ import {
   faHeart as filledHeart,
 } from '@fortawesome/free-solid-svg-icons';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
-import { brand_black, brand_blue, brand_white } from '../../utils/palette';
+import {
+  brand_black,
+  brand_blue,
+  brand_darkblue,
+  brand_white,
+} from '../../utils/palette';
 
 import DefaultImg from '../../assets/images/default_image.jpeg';
 import Grade from '../../components/atoms/Grade';
 import Text from '../../components/atoms/Text';
 import Flex from '../../components/atoms/Flex';
 
-const Details = ({ img = DefaultImg }) => {
+const Details = ({ data }) => {
   return (
     <SocialCardContainer>
       <MainBar>
@@ -35,10 +40,10 @@ const Details = ({ img = DefaultImg }) => {
             />
           </Flex>
         </TextContainer>
-        <ImageContainer img={img} />
+        <ImageContainer src={data.video} controls />
       </MainBar>
       <Sidebar>
-        <ContentBox />
+        <ContentBox>{data.content}</ContentBox>
         <CommentBox>
           <Write placeholder="댓글 쓰기" />
         </CommentBox>
@@ -98,12 +103,10 @@ const TextContainer = styled.div`
   background-color: ${brand_white};
 `;
 
-const ImageContainer = styled.div`
+const ImageContainer = styled.video`
   width: 100%;
   height: 600px;
-  background-image: url(${({ img }) => img});
-  background-size: cover;
-  background-position: center;
+  background-color: ${brand_black};
 `;
 
 const Write = styled.textarea`

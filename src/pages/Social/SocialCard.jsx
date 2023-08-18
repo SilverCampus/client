@@ -9,24 +9,36 @@ import DefaultImg from '../../assets/images/default_image.jpeg';
 import Grade from '../../components/atoms/Grade';
 import Text from '../../components/atoms/Text';
 import Flex from '../../components/atoms/Flex';
+import Modal from '../Modal/Modal';
+import useModal from '../Modal/useModal';
+import Details from './Details';
 
-const SocialCard = ({ img = DefaultImg, toggleModal }) => {
-  //   if (!data.img) data.img = DefaultImg;
+const SocialCard = ({ data }) => {
+  const [isOpen, toggleModal] = useModal();
+  const icon = data.is_liked ? filledHeart : faHeart;
 
   return (
     <SocialCardContainer>
       <TextContainer>
         <Flex direction="row" gap="10px" width="auto">
-          <Grade type={'Professor'} height="40px" />
-          <Text children={'갓경호'} weight={700} size="20px" />
+          <Grade type={data.user_grade} height="35px" />
+          <Text children={data.user_name} weight={700} size="20px" />
         </Flex>
         <FontAwesomeIcon
-          icon={faHeart}
-          style={{ color: brand_blue }}
+          icon={icon}
+          style={{ color: brand_blue, cursor: 'pointer' }}
           className="fa-2x"
         />
       </TextContainer>
-      <ImageContainer img={img} onClick={() => toggleModal()} />
+      <ImageContainer
+        img={data.video_thumbnail}
+        onClick={() => toggleModal()}
+      />
+      <Modal
+        state={isOpen}
+        toggleModal={toggleModal}
+        children={<Details data={data} />}
+      />
     </SocialCardContainer>
   );
 };
@@ -38,7 +50,12 @@ const SocialCardContainer = styled.div`
   overflow: hidden;
   color: ${brand_black};
 
-  filter: drop-shadow(0px 0px 8px rgba(0, 0, 0, 0.25));
+  border: 1px solid #ddd;
+  border-bottom: 3px solid #555;
+
+  // &:hover {
+  //   animation: bounce 3s infinite ease-in-out;
+  // }
 `;
 
 const TextContainer = styled.div`
@@ -57,11 +74,6 @@ const ImageContainer = styled.div`
   background-size: cover;
   background-position: center;
   cursor: pointer;
-
-  filter: brightness(80%);
-  &:hover {
-    filter: brightness(100%);
-  }
 `;
 
 export default SocialCard;

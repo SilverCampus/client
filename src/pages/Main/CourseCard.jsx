@@ -62,7 +62,7 @@ const CourseCard = ({ data }) => {
             <Tag type={data.category_name} />
             <Tag type={`학점${data.credits}`} text={`${data.credits}학점`} />
           </Flex>
-          <Text children={data.title} size="23px" weight={700} />
+          <Text children={data.title} size="23px" weight={500} />
           <Text children={data.instructor} size="18px" align="right" />
         </Details>
       </div>

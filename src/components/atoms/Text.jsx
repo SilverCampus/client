@@ -17,6 +17,7 @@ const Text = ({
   white = false,
   blue = false,
   isCut = false,
+  className,
   ...rest
 }) => {
   let family;
@@ -41,6 +42,7 @@ const Text = ({
       white={white}
       blue={blue}
       isCut={isCut}
+      className={className}
       {...rest}
     >
       {children}
@@ -49,7 +51,7 @@ const Text = ({
 };
 
 const StyledText = styled.span`
-  word-wrap: break-word;
+  word-wrap: break-all;
   text-align: ${({ align }) => align};
   font-size: ${({ size }) => size};
   font-weight: ${({ weight }) => weight};

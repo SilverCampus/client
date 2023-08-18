@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faHeart } from '@fortawesome/free-regular-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import Flex from '../../components/atoms/Flex';
+import Tag from '../../components/molecules/Tag';
 
 // Default Image
 import defaultImg from '../../assets/images/default_image.jpeg';
@@ -51,8 +52,18 @@ const PersonalBox = ({ type, data }) => {
       <PersonalBoxContainer type={type}>
         <ImgBox img={data.thumbnail} />
         <DescriptionBox>
-          <Text children={data.title} size="25px" weight="700" align="center" />
-          <Text children={data.description} />
+          <Flex direction="row" width="auto" gap="13px" justify="start">
+            <Tag type={data.category_name} />
+            <Tag type={`학점${data.credits}`} text={`${data.credits}학점`} />
+          </Flex>
+          <Text
+            children={data.title}
+            size="25px"
+            weight="700"
+            align="center"
+            isCut={true}
+          />
+          <Text children={data.description} isCut={true} />
         </DescriptionBox>
       </PersonalBoxContainer>
     </Container>
@@ -94,7 +105,7 @@ const DescriptionBox = styled.div`
   flex-direction: column;
   text-align: center;
   gap: 20px;
-  padding: 20px;
+  padding: 40px 30px;
 `;
 
 export default PersonalBox;
